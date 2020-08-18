@@ -42,10 +42,10 @@ group :development, :test do
   gem 'pry-byebug'
 
   #Capistranoの利用に必要なgem
-  gem 'capistrano'
-  gem 'capistrano-rails'
-  gem 'capistrano3-puma'
-  gem 'capistrano-rbenv'
+  #gem 'capistrano'
+  #gem 'capistrano-rails'
+  #gem 'capistrano3-puma'
+  #gem 'capistrano-rbenv'
 
   #RSpec
   gem 'rspec-rails'
@@ -97,10 +97,10 @@ gem 'rubocop-rails', require: false
 gem 'kaminari','~> 1.2.1'
 
 # 本番環境でMySQLを利用するための設定
-gem 'dotenv-rails'
-group :production do
-  gem 'mysql2'
-end
+#gem 'dotenv-rails'
+#group :production do
+  #gem 'mysql2'
+#end
 
 # タグ付け
 gem 'acts-as-taggable-on', '~> 6.0'

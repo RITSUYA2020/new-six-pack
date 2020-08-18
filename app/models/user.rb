@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
   has_many :work_outs
   has_many :favorites
+
   #ユーザーがファボした投稿を直接アソシエーションで取得するため
   has_many :favorite_work_outs, through: :favorites, source: :work_out
   has_many :comments
@@ -38,5 +39,12 @@ class User < ApplicationRecord
 
   def active_for_authentication?
     super && is_deleted == false
+  end
+
+  def self.guest
+    find_or_create_by!(name: 'ゲスト', email: 'guest@example.jp') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      # user.confirmed_at = Time.now  # Confirmable を使用している場合は必要
+    end
   end
 end

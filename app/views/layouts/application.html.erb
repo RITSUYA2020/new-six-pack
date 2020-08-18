@@ -12,49 +12,7 @@
   </head>
 
   <body>
-    <!--======== Header ========-->
-    <header>
-      <div class= "container">
-        <nav class="navbar">
-            <%= link_to destroy_user_session_path, method: :delete do %>
-                <%= image_tag 'logo.png', :size =>'56x56', class: "logo rounded-circle mb-3" %>
-            <% end %>
-          <ul class="nav">
-            <% if user_signed_in? %>
-              <li class="nav-list mr-4">
-                <%= link_to "All Work Out", work_outs_path %>
-              </li>
-              <li class="nav-list mr-4">
-                <%= link_to "Friend's Work Out", work_outs_following_path %>
-              </li>
-              <li class="nav-list mr-4">
-                <%= link_to "My Page", user_path(current_user) %>
-              </li>
-              <li class="nav-list mr-4">
-                <%= link_to "Write Work Out", new_work_out_path %>
-              </li>
-              <li class="nav-list mr-4">
-                <%= link_to "Contact", contacts_new_path %>
-              </li>
-              <li class="nav-list">
-                <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-              </li>
-            <% else %>
-              <li class="nav-list mr-4">
-                <%= link_to "Contact", contacts_new_path %>
-              </li>
-              <li class="nav-list mr-4">
-                <%= link_to "Sign up", new_user_registration_path %>
-              </li>
-              <li class="nav-list">
-                <%= link_to "Login", new_user_session_path %>
-              </li>
-            <% end %>
-          </ul>
-        </nav>
-      </div>
-    </header>
-
+    <%= render 'layouts/header' %>
     <!--======== Main ========-->
     <main>
       <%= yield %>

@@ -2,8 +2,13 @@ Rails.application.routes.draw do
   root 'homes#top'
 
   devise_for :users, controllers: {
-  	sessions: 'users/sessions'
+  	sessions: 'users/sessions',
+    registrations: 'users/registrations',
+    passwords: 'users/passwords'
   }
+  devise_scope :user do
+    post '/users/guest_sign_in', to: 'users/sessions#new_guest'
+  end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get 'users/:user_id/favorites' => 'favorites#show', as: 'user_favorites'

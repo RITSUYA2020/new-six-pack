@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
    before_action :authenticate_user!
+   before_action :check_guest, only: [:update, :withdraw]
 
   def show
     @user = User.find(params[:id])
@@ -17,7 +18,7 @@ class UsersController < ApplicationController
       flash[:notice] = 'プロフィールの編集を保存しました。'
   		redirect_to user_path(current_user)
   	else
-  		flash[:error] = '名前とメールアドレスを入力してください。'
+      flash[:error] = '名前とメールアドレスを入力してください。'
   		render "edit"
   	end
   end
@@ -36,18 +37,28 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
+  # 自分がフォローしているユーザー一覧
   def follows
     @user = User.find(params[:user_id])
     @users = @user.followings
   end
 
+  # 自分をフォローしているユーザー一覧
   def followers
     @user = User.find(params[:user_id])
     @users = @user.followers
+  end
+
+  def check_guest
+    user = User.find(params[:id])
+    if user.email == 'test@example.jp'
+      flash[:alert] = 'ゲストユーザーの変更・削除はできません。'
+    end
   end
 
   private
   def user_params
   	params.require(:user).permit(:name, :email, :profile_image)
   end
+
 end

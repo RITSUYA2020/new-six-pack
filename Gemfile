@@ -104,3 +104,7 @@ gem 'kaminari','~> 1.2.1'
 
 # タグ付け
 gem 'acts-as-taggable-on', '~> 6.0'
+
+# 他言語対応
+gem 'rails-i18n'
+

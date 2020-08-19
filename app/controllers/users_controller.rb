@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   def update
   	@user = User.find(params[:id])
   	if @user.update(user_params)
-      flash[:notice] = 'プロフィールの編集を保存しました。'
+      flash[:notice] = 'プロフィールを更新しました。'
   		redirect_to user_path(current_user)
   	else
       flash[:error] = '名前とメールアドレスを入力してください。'
@@ -51,14 +51,15 @@ class UsersController < ApplicationController
 
   def check_guest
     user = User.find(params[:id])
-    if user.email == 'test@example.jp'
+    if user.email == 'guest@example.jp'
       flash[:alert] = 'ゲストユーザーの変更・削除はできません。'
+      redirect_to work_outs_path
     end
   end
 
   private
   def user_params
-  	params.require(:user).permit(:name, :email, :profile_image)
+  	params.require(:user).permit(:name, :email, :profile_image, :sex, :encrypted_password, :is_deleted)
   end
 
 end

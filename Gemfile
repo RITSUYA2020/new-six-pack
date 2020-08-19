@@ -102,9 +102,8 @@ gem 'kaminari','~> 1.2.1'
   #gem 'mysql2'
 #end
 
-# タグ付け
-gem 'acts-as-taggable-on', '~> 6.0'
-
 # 他言語対応
 gem 'rails-i18n'
 
+# タグ付け
+gem 'acts-as-taggable-on', '~> 6.0'

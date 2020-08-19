@@ -47,4 +47,9 @@ class User < ApplicationRecord
       # user.confirmed_at = Time.now  # Confirmable を使用している場合は必要
     end
   end
+
+  # DM
+  has_many :messages, dependent: :destroy
+  has_many :entries, dependent: :destroy
+
 end

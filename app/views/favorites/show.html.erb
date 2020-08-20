@@ -5,5 +5,10 @@
 			<h2>いいねした投稿</h2>
 		</div>
 		<%= render 'work_outs/lists', work_outs: @favorite_work_outs %>
+		<div class="row">
+			<div class="mx-auto mb-3">
+				<%= paginate @favorite_work_outs %>
+			</div>
+		</div>
 	</div>
 </div>

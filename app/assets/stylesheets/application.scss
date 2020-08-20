@@ -209,7 +209,7 @@
   transform: scale(1.1);
 }
 
-/*下からフェードイン*/
+// 下からフェードイン
 .fade-in-bottom {
    opacity: 0;
    animation-name: fadein-bottom;
@@ -230,7 +230,7 @@
    }
 }
 
-/* フェードイン用のCSS */
+// フェードイン用のCSS
 .slide-bottom-1 {
    opacity: 0;
    transform: translateY(20px);
@@ -278,4 +278,54 @@
   display: none;
   z-index: 9999;
   width: 280px;
+}
+
+// 通知ー囲み枠
+.frame-notification {
+  padding: 2em;
+}
+
+// 会話風の吹き出し
+.balloon5 {
+  width: 100%;
+  margin: 1.5em 0;
+  overflow: hidden;
+}
+
+.says {
+  display: inline-block;
+  position: relative;
+  margin: 5px 0 0 0;
+  padding: 17px 13px;
+  border-radius: 12px;
+  background: #f5f5f5;
+}
+
+.says:after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 18px;
+  left: -24px;
+  border: 12px solid transparent;
+  border-right: 12px solid #f5f5f5;
+}
+
+.say {
+  display: inline-block;
+  position: relative;
+  margin: 5px 0 0 0;
+  padding: 17px 13px;
+  border-radius: 12px;
+  background: #adff2f;
+}
+
+.say:after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 18px;
+　right: -24px;
+  border: 12px solid transparent;
+  border-left: 12px solid #adff2f;
 }

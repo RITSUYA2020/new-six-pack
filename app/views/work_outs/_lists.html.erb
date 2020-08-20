@@ -72,15 +72,10 @@
 				<div class="row my-3 mx-auto">
 					<!-- 詳細ページへのボタン -->
 					<div class="col-12 text-center">
-						<%=link_to "Read More!", work_out_path(work_out), class: "btn btn-outline-secondary" %>
+						<%=link_to "投稿詳細", work_out_path(work_out), class: "btn btn-outline-secondary" %>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 <% end %>
-<div class="row">
-		<div class="mx-auto mb-3">
-			<%= paginate work_outs %>
-		</div>
-</div>

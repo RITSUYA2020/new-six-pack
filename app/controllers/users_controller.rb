@@ -6,7 +6,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @current_user_entry = Entry.where(user_id: current_user.id)
     @user_entry = Entry.where(user_id: @user.id)
-    binding.pry
     unless @user.id == current_user.id
       @current_user_entry.each do |current_user|
         @user_entry.each do |user|
@@ -73,6 +72,10 @@ class UsersController < ApplicationController
       flash[:alert] = 'ゲストユーザーの変更・削除はできません。'
       redirect_to work_outs_path
     end
+  end
+
+  def index
+    @users = User.all
   end
 
   private

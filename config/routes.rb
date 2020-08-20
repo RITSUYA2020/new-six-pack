@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get 'users/:user_id/favorites' => 'favorites#show', as: 'user_favorites'
 
-  resources :users, except: [:index, :create, :new] do
+  resources :users, except: [:create, :new] do
   	resource :relationships, only: [:create, :destroy]
   	get :follows
   	get :followers

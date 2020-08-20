@@ -1,38 +1,59 @@
-<div class="left-button">
-	<%= link_to "ユーザー一覧に戻る", user_path(current_user),class:"edit-link" %>
-</div>
-<h4 class="rooms-title">気になる同士</h4>
-<% @entries.each do |e| %>
-	<div class="user-name">
-		<strong>
-			<%#= image_tag e.user.avatar, class:"user-image" %>
-			<a class="rooms-user-link" href="/users/<%= e.user.id %>">
-				<%= e.user.name %>さん
-			</a>
-		</strong>
-	</div>
-<% end %>
-<hr>
-<div class="chats">
-	<div class="chat">
-		<% if @messages.present? %>
-			<% @messages.each do |m| %>
-				<div class="chat-box">
-					<div class="chat-face">
-						<%#= image_tag m.user.avatar, class:"user-image" %>
-					</div>
-					<div class="chat-hukidashi"> <strong><%= m.content %></strong> <br>
-						<%= m.created_at.strftime("%Y-%m-%d %H:%M")%>
-					</div>
+<div class="wrap">
+	<div class="container-fluid">
+		<%= render 'layouts/flashes' %>
+		<div class="left-button ml-1 mt-2">
+			<%= link_to "ユーザー一覧に戻る", users_path %>
+		</div>
+		<div class="row">
+			<div class="col ml-1 mt-2">
+				<h2>メッセージ</h2>
+			</div>
+		</div>
+		<div class="row justify-content-center">
+			<div class="chats col-8 frame-notification">
+				<div class="chat">
+					<% if @messages.present? %>
+						<% @messages.each do |message| %>
+							<div class="row balloon">
+								<% if current_user.name == message.user.name %>
+									<div class="col-12 text-right">
+										<div class="chatting">
+											<div class="say">
+												<%= message.content %>
+											</div>
+											<br>
+											<small><%= message.created_at.strftime("%Y-%m-%d %H:%M")%></small>
+										</div>
+									</div>
+								<% else %>
+									<div class="col-2 text-right">
+										<div class="face-icon">
+											<%= attachment_image_tag message.user, :profile_image, :fill, 40, 40, format: "jpeg", fallback: "no-image.jpg", size: '40x40', class: "rounded-circle" %><br>
+											<small><%= message.user.name %></small>
+										</div>
+									</div>
+									<div class="col-10 text-left">
+											<div class="says">
+												<%= message.content %>
+											</div>
+											<br>
+											<small><%= message.created_at.strftime("%Y-%m-%d %H:%M")%></small>
+									</div>
+								<% end %>
+							</div>
+						<% end %>
+					<% end %>
 				</div>
-			<% end %>
-		<% end %>
-	</div>
-	<div class="posts">
-		<%= form_for @message do |f| %>
-			<%= f.text_field :content, placeholder: "メッセージを入力して下さい" , size: 70, class:"form-text-field" %>
-			<%= f.hidden_field :room_id, value: @room.id %>
-			<%= f.submit "投稿",class: 'form-submit'%>
-		<% end %>
+				<div class="posts mt-3 text-center">
+					<%= form_for @message do |f| %>
+						<%= f.text_field :content, placeholder: "メッセージを入力して下さい" , size: 70, class:"form-text-field" %>
+						<%= f.hidden_field :room_id, value: @room.id %>
+						<%= button_tag type: 'submit', class: "btn btn-secondary btn-sm" do %>
+                			<i class="fas fa-paper-plane"></i>
+                		<% end %>
+					<% end %>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>

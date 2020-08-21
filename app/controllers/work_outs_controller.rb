@@ -12,6 +12,23 @@ class WorkOutsController < ApplicationController
   def show
     @work_out = WorkOut.find(params[:id])
     @user = @work_out.user
+    @current_user_entry = Entry.where(user_id: current_user.id)
+    @user_entry = Entry.where(user_id: @user.id)
+    unless @user.id == current_user.id
+      @current_user_entry.each do |current_user|
+        @user_entry.each do |user|
+          if current_user.room_id == user.room_id then
+            @isRoom = true
+            @roomId = current_user.room_id
+          end
+        end
+      end
+      if @isRoom
+      else
+        @room = Room.new
+        @entry = Entry.new
+      end
+    end
     @new_comment = Comment.new
     @favorite_users = @work_out.favorite_users
   end

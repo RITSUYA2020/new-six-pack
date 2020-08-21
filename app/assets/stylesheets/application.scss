@@ -182,7 +182,7 @@
 	text-align: center;
 }
 
-// paginate
+// ページネーション
 .pagination{
   margin: auto;
   width: 50%;
@@ -197,16 +197,6 @@
   transition: .3s;
   -webkit-transform: scale(1);
   transform: scale(1);
-}
-.pagination span:hover{
-  transition: .3s;
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
-}
-.pagination span a:hover{
-  transition: .3s;
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
 }
 
 // 下からフェードイン

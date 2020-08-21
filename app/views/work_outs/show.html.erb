@@ -4,51 +4,7 @@
 		<div class="row ml-1 mt-2">
 			<h2>投稿詳細</h2>
 		</div>
-			<!--プロフィール-->
-			<div class="row justify-content-center">
-				<!--ユーザー情報-->
-				<div class="col-md-8 border">
-					<div class="row  border-bottom">
-						<div class="col text-center">
-							<%= attachment_image_tag @user, :profile_image, :fill, 63, 63, format: "jpeg", fallback: "no-image.jpg", class: "rounded-circle" %>
-							<%= @user.name %>
-						</div>
-						<!--ログインが自分か他人か-->
-						<div class="col text-center mt-4">
-							<% if @user == current_user %>
-								<%= link_to "プロフィール編集", edit_user_path(current_user) %>
-							<% elsif @user != current_user %>
-								<% if @user.followed_by?(current_user) %>
-									<%=link_to "フォローを外す", user_relationships_path(@user), method: :delete %>
-								<% else %>
-									<%=link_to "フォローする", user_relationships_path(@user), method: :post %>
-								<% end %>
-							<% end %>
-						</div>
-					</div>
-					<div class="row my-3">
-						<div class="col text-center">
-							フォロワー<br>
-							<%= link_to user_followers_path(@user) do %>
-								<%= @user.passive_relationships.count %>
-							<% end %>
-						</div>
-						<div class="col text-center">
-							フォロー<br>
-							<%= link_to user_follows_path(@user) do %>
-								<%= @user.active_relationships.count %>
-							<% end %>
-						</div>
-						<div class="col text-center">
-							いいね<br>
-							<%= link_to user_favorites_path(@user) do %>
-								<%= @user.favorites.count %>
-							<% end %>
-						</div>
-					</div>
-				</div>
-			</div>
-
+			<%= render 'layouts/profile', user: @user %>
 			<div class="row justify-content-center">
 				<div class="col-md-8 my-3">
 					<div class="card">

@@ -1,12 +1,10 @@
 <div class="wrap">
 	<div class="container-fluid">
 		<%= render 'layouts/flashes' %>
-		<div class= "row">
-			<div class="col-auto ml-1 mt-2 page-title">
-				<h3>マイページ</h3>
-			</div>
+		<div class= "row ml-1 mt-2">
+			<h2>マイページ</h2>
 		</div>
-			<%= render 'layouts/profile', user: @user, isRoom: @isRoom, roomId: @roomId, room: @room, entry: @entry  %>
+			<%= render 'layouts/profile', user: @user %>
 			<%= render 'work_outs/lists', work_outs: @work_outs %>
 	</div>
 </div>

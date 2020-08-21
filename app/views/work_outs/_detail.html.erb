@@ -1,0 +1,54 @@
+<div class= "row justify-content-center">
+	<div class="col-8 border my-3 no-gutters">
+		<%= form_for(work_out) do |f| %>
+			<div class="mt-3 px-2">
+				<%= f.label :time, "時間" %><span class="text-danger">（必須）</span><br>
+				<%= f.text_field :time, autocomplete: "time", placeholder: "(例)15", class: "time" %> 分
+			</div>
+
+			<div class="mt-3 px-2">
+				<%= f.label :muscle_group, "筋群" %><span class="text-danger">（必須）</span><br>
+				<%= f.select :muscle_group, WorkOut.muscle_groups.keys.map {|k| [I18n.t("enums.work_out.muscle_group.#{k}"), k]}, class: "muscle_group" %>
+			</div>
+
+			<div class="mt-3 px-2">
+				<%= f.label :equipment, "器具" %><br>
+				<%= f.text_field :equipment, autocomplete: "equipment", placeholder: "器具を使用した場合は器具の名前を記入してください。", class: "equipment form-control" %>
+			</div>
+
+			<div class="mt-3 px-2">
+				<%= f.label :body, "内容" %><br>
+				<%= f.text_area :body,  autocomplete: "off", placeholder: "具体的な内容を記入してください。",class: "body form-control" %>
+			</div>
+
+			<div class="mt-3 px-2">
+				<%= f.label :effect, "効果" %><span class="text-danger">（必須）</span><br>
+				<%= f.select :effect, WorkOut.effects.keys.map {|k| [I18n.t("enums.work_out.effect.#{k}"), k]}, class: "effect" %>
+			</div>
+
+			<div class="mt-3 px-2">
+				<%= f.label :place, "場所" %><span class="text-danger">（必須）</span><br>
+				<%= f.select :place, WorkOut.places.keys.map {|k| [I18n.t("enums.work_out.place.#{k}"), k]}, class: "place" %>
+			</div>
+
+			<div class="mt-3 px-2">
+				<%= f.label :before_image, "ビフォー画像" %><br>
+				<%= f.attachment_field :before_image, class: "before_image" %>
+			</div>
+
+			<div class="mt-3 px-2">
+				<%= f.label :after_image, "アフター画像" %><br>
+				<%= f.attachment_field :after_image, class: "after_image" %>
+			</div>
+
+			<div class="mt-3 px-2">
+				<%= f.label :tag_list, "タグ（カンマ区切りで入力）" %><br>
+				<%= f.text_field :tag_list, value: work_out.tag_list.join(','), class: "form-control" %>
+			</div>
+
+			<div class="text-center m-2">
+		   		<%= f.submit "登録", class: "btn btn-outline-primary" %>
+		  	</div>
+		<% end %>
+	</div>
+</div>

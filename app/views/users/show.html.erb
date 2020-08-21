@@ -6,7 +6,7 @@
 				<h3>マイページ</h3>
 			</div>
 		</div>
-			<%= render 'layouts/profile', user: @user %>
+			<%= render 'layouts/profile', user: @user, isRoom: @isRoom, roomId: @roomId, room: @room, entry: @entry %>
 			<%= render 'work_outs/lists', work_outs: @work_outs %>
 	</div>
 </div>

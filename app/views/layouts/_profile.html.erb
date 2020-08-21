@@ -22,13 +22,13 @@
 			<div class="col-4 text-center mt-4">
 				<% unless user.id == current_user.id %>
 					<% if current_user.followed_by?(user) && user.followed_by?(current_user)  %>
-						<% if @isRoom == true %>
-							<%= link_to room_path(@roomId) do %>
+						<% if isRoom == true %>
+							<%= link_to room_path(roomId) do %>
 								メッセージ <i class="far fa-envelope"></i>
 							<% end %>
 						<% else %>
-							<%= form_for(@room) do |f| %>
-								<%= fields_for(@entry) do |e| %>
+							<%= form_for(room) do |f| %>
+								<%= fields_for(entry) do |e| %>
 									<%= e.hidden_field :user_id, value: user.id %>
 								<% end %>
 								<%= button_tag type: 'submit', class: "btn btn-primary btn-sm" do %>

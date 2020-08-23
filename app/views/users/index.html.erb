@@ -1,17 +1,17 @@
 <div class="wrap">
 	<div class="container-fluid">
 		<%= render 'layouts/flashes' %>
-		<div class= "row">
+		<div class="row">
 			<div class="col-auto ml-1 mt-2 page-title">
 				<h3>ユーザー一覧</h3>
 			</div>
 		</div>
-		<div class= "row">
+		<div class= "row justify-content-center">
 			<% @users.each do |user| %>
-				<div class="col-4 mb-3">
+				<div class="col-4 mb-3 py-2 mx-5 text-center user-index">
 					<%= link_to user_path(user) do %>
-						<%= attachment_image_tag user, :profile_image, :fill, 63, 63, format: "jpeg", fallback: "no-image.jpg", class: "rounded-circle" %>
-						<%= user.name %>
+						<%= attachment_image_tag user, :profile_image, :fill, 63, 63, format: "jpeg", fallback: "no-image.jpg", class: "rounded-circle" %><br>
+						<%= user.name %><br>
 					<% end %>
 					<%= user.sex_i18n %>
 				</div>

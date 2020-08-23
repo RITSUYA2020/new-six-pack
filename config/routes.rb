@@ -34,4 +34,8 @@ Rails.application.routes.draw do
 
   resources :messages, only: [:create]
   resources :rooms, only: [:create,:show]
+
+  # 通知
+  delete "notifications/destroy_all" => "notifications#destroy_all"
+  resources :notifications, only: :index
 end

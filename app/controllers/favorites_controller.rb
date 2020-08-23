@@ -2,12 +2,18 @@ class FavoritesController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    @work_out = WorkOut.find(params[:work_out_id])
   	#「current_userに関連したFavoriteクラスの新しいインスタンス」が作成可能。
   	#　つまり、favorite.user_id = current_user.idが済んだ状態で生成されている。
   	#　buildはnewと同じ意味で、アソシエーションしながらインスタンスをnewする時に形式的に使われる。
   	favorite = current_user.favorites.build(work_out_id: params[:work_out_id])
   	favorite.save
+    @work_out = WorkOut.find(params[:work_out_id])
+    # 通知の作成
+    @work_out.create_notification_by(current_user)
+    respond_to do |format|
+      format.html {redirect_to request.referrer}
+      format.js
+    end
   end
 
   def destroy

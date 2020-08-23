@@ -1,0 +1,14 @@
+<% visiter = notification.visiter %>
+<% work_out = notification.work_out %>
+
+	<%= link_to user_path(notification.visiter) do %>
+		<%= attachment_image_tag visiter, :profile_image, :fill, 50, 50, format: "jpeg", fallback: "no-image.jpg", size: "50x50", class:"rounded-circle" %>
+	<% end %>
+
+<%= notification_form(notification) %>
+
+	<span><%= " (#{time_ago_in_words(notification.created_at)} 前)" %></span>
+	<br>
+	<% if !@comment.nil? %>
+		<p class="text-center" style="color: #C0C0C0;"><%= @comment %></p>
+	<% end %>

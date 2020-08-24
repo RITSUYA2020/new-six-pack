@@ -10,10 +10,6 @@ class FavoritesController < ApplicationController
     @work_out = WorkOut.find(params[:work_out_id])
     # 通知の作成
     @work_out.create_notification_by(current_user)
-    respond_to do |format|
-      format.html {redirect_to request.referrer}
-      format.js
-    end
   end
 
   def destroy

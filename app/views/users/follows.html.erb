@@ -6,6 +6,12 @@
 				<h3>フォロー中</h3>
 			</div>
 		</div>
-		<%= render 'users/user_lists', users: @users %>
+		<% if @users.exists? %>
+			<%= render 'users/user_lists', users: @users %>
+		<% else %>
+			<div class= "row justify-content-center my-3">
+		    	<p>フォロー中のユーザーはいません</p>
+		    </div>
+		<% end %>
 	</div>
 </div>

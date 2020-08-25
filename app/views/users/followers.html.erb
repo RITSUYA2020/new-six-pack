@@ -6,6 +6,12 @@
 				<h3>フォロワー</h3>
 			</div>
 		</div>
-		<%= render 'users/user_lists', users: @users %>
+		<% if @users.exists? %>
+			<%= render 'users/user_lists', users: @users %>
+		<% else %>
+			<div class= "row justify-content-center my-3">
+			    <p>フォロワーはいません</p>
+			</div>
+		<% end %>
 	</div>
 </div>

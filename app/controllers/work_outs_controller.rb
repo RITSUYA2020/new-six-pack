@@ -14,6 +14,8 @@ class WorkOutsController < ApplicationController
     @user = @work_out.user
     @current_user_entry = Entry.where(user_id: current_user.id)
     @user_entry = Entry.where(user_id: @user.id)
+    @comment = Comment.new
+    @favorite_users = @work_out.favorite_users
     unless @user.id == current_user.id
       @current_user_entry.each do |current_user|
         @user_entry.each do |user|
@@ -29,8 +31,6 @@ class WorkOutsController < ApplicationController
         @entry = Entry.new
       end
     end
-    @new_comment = Comment.new
-    @favorite_users = @work_out.favorite_users
   end
 
   def edit

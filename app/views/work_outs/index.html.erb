@@ -17,7 +17,9 @@
 		<%= render 'work_outs/lists', work_outs: @work_outs %>
 		<div class="row">
 			<div class="mx-auto mb-3">
-				<%= paginate @work_outs %>
+				<% if !params[:tag_name] %>
+					<%= paginate @work_outs %>
+				<% end %>
 			</div>
 		</div>
 	</div>

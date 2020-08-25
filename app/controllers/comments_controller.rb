@@ -10,8 +10,8 @@ class CommentsController < ApplicationController
 			#通知の作成
 			@comment_work_out.create_notification_comment!(current_user, @comment.id)
 		else
-    		@user = @work_out.user
-			render template: "work_outs/show"
+			flash[:error] = 'コメントを入力してください。'
+			redirect_to request.referer
 		end
 	end
 

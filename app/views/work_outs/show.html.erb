@@ -152,7 +152,7 @@
 			</div>
 			<div class="row justify-content-center">
 				<div class="col-md-8 my-3">
-					<%= form_with( model:[@work_out,@new_comment], url: work_out_comments_path(@work_out,@new_comment), remote: true) do |f| %>
+					<%= form_with( model:[@work_out,@comment], url: work_out_comments_path(@work_out,@comment), remote: true) do |f| %>
 
 						<div class="field text-center">
 							<%= f.text_area :body, :size => "80x5", placeholder: "コメントをここに" %>

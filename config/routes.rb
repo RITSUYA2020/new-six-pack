@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get 'users/:user_id/favorites' => 'favorites#show', as: 'user_favorites'
+  # 検索
+  get "users/search" => "users#search", as: "users_search"
 
   resources :users, except: [:create, :new] do
   	resource :relationships, only: [:create, :destroy]

@@ -107,3 +107,6 @@ gem 'rails-i18n'
 
 # タグ付け
 gem 'acts-as-taggable-on', '~> 6.0'
+
+# 検索
+gem 'ransack'

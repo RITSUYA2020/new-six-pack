@@ -3,7 +3,7 @@ class WorkOut < ApplicationRecord
   attachment :after_image
 
   has_many :favorites
-  #投稿をファボしたユーザーを直接アソシエーションで取得するため
+  # 投稿をファボしたユーザーを直接アソシエーションで取得するため
   has_many :favorite_users, through: :favorites, source: :user
   belongs_to :user
   has_many :comments, dependent: :destroy
@@ -17,9 +17,9 @@ class WorkOut < ApplicationRecord
   # 通知
   has_many :notifications, dependent: :destroy
 
-  #ユーザーがツイートをお気に入りしたかどうかの判定メソッド
+  # ユーザーがツイートをお気に入りしたかどうかの判定メソッド
   def favorited_by?(user)
-  	favorites.where(user_id: user.id).exists?
+    favorites.where(user_id: user.id).exists?
   end
 
   acts_as_taggable
@@ -27,19 +27,17 @@ class WorkOut < ApplicationRecord
   # tags のなかにIDやら名前などが入る。イメージ的には親情報。
 
   def search(word)
-    WorkOut.where("name LIKE ?", "%#{word}%")
+    WorkOut.where('name LIKE ?', "%#{word}%")
   end
 
   def create_notification_by(current_user)
     notification = current_user.active_notifications.new(
       work_out_id: id,
       visited_id: user_id,
-      action: "favorite"
+      action: 'favorite'
     )
     # 自分の投稿に対するいいねの場合は、通知済みとする
-    if notification.visiter_id == notification.visited_id
-      notification.checked = true
-    end
+    notification.checked = true if notification.visiter_id == notification.visited_id
     notification.save if notification.valid?
   end
 
@@ -62,10 +60,7 @@ class WorkOut < ApplicationRecord
       action: 'comment'
     )
     # 自分の投稿に対するコメントの場合は、通知済みとする
-    if notification.visiter_id == notification.visited_id
-      notification.checked = true
-    end
+    notification.checked = true if notification.visiter_id == notification.visited_id
     notification.save if notification.valid?
   end
-
 end

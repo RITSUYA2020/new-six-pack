@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :work_outs
   has_many :favorites
 
-  #ユーザーがファボした投稿を直接アソシエーションで取得するため
+  # ユーザーがファボした投稿を直接アソシエーションで取得するため
   has_many :favorite_work_outs, through: :favorites, source: :work_out
   has_many :comments
 
@@ -20,21 +20,20 @@ class User < ApplicationRecord
 
   # フォロー
   # ====================自分がフォローしているユーザーとの関連 ===================================
-  #フォローする側のUserから見て、フォローされる側のUserを(中間テーブルを介して)集める。なので親はfollowing_id(フォローする側)
-  has_many :active_relationships, class_name: "Relationship", foreign_key: :following_id
-  #フォローしたユーザーを直接アソシエーションで取得するため
+  # フォローする側のUserから見て、フォローされる側のUserを(中間テーブルを介して)集める。なので親はfollowing_id(フォローする側)
+  has_many :active_relationships, class_name: 'Relationship', foreign_key: :following_id
+  # フォローしたユーザーを直接アソシエーションで取得するため
   has_many :followings, through: :active_relationships, source: :follower
   # ========================================================================================
   # ====================自分がフォローされるユーザーとの関連 ===================================
-  #フォローされる側のUserから見て、フォローしてくる側のUserを(中間テーブルを介して)集める。なので親はfollower_id(フォローされる側)
-  has_many :passive_relationships, class_name: "Relationship", foreign_key: :follower_id
-  #フォローされたユーザーを直接アソシエーションで取得するため
+  # フォローされる側のUserから見て、フォローしてくる側のUserを(中間テーブルを介して)集める。なので親はfollower_id(フォローされる側)
+  has_many :passive_relationships, class_name: 'Relationship', foreign_key: :follower_id
+  # フォローされたユーザーを直接アソシエーションで取得するため
   has_many :followers, through: :passive_relationships, source: :following
   # ========================================================================================
 
-
   def followed_by?(user)
-  # 今自分(引数のuser)がフォローしようとしているユーザー(レシーバー)がフォローされているユーザー(つまりpassive)の中から、引数に渡されたユーザー(自分)がいるかどうかを調べる
+    # 今自分(引数のuser)がフォローしようとしているユーザー(レシーバー)がフォローされているユーザー(つまりpassive)の中から、引数に渡されたユーザー(自分)がいるかどうかを調べる
     passive_relationships.find_by(following_id: user.id).present?
   end
 
@@ -56,12 +55,12 @@ class User < ApplicationRecord
   has_many :rooms, through: :entries, dependent: :destroy
 
   # 通知
-  has_many :active_notifications, class_name: "Notification", foreign_key: "visiter_id", dependent: :destroy
-  has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy
+  has_many :active_notifications, class_name: 'Notification', foreign_key: 'visiter_id', dependent: :destroy
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
 
-  #フォロー時の通知
+  # フォロー時の通知
   def create_notification_follow!(current_user)
-    temp = Notification.where(["visiter_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'follow'])
+    temp = Notification.where(['visiter_id = ? and visited_id = ? and action = ? ', current_user.id, id, 'follow'])
     if temp.blank?
       notification = current_user.active_notifications.new(
         visited_id: id,
@@ -70,5 +69,4 @@ class User < ApplicationRecord
       notification.save if notification.valid?
     end
   end
-
 end

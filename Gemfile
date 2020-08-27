@@ -110,3 +110,6 @@ gem 'acts-as-taggable-on', '~> 6.0'
 
 # 検索
 gem 'ransack'
+
+# カレンダー
+gem 'simple_calendar', '~> 2.0'

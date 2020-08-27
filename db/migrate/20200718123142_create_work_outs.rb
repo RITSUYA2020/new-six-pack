@@ -10,6 +10,7 @@ class CreateWorkOuts < ActiveRecord::Migration[5.2]
       t.integer :place, null: false
       t.string :before_image_id
       t.string :after_image_id
+      t.date :start_time
 
       t.timestamps
     end

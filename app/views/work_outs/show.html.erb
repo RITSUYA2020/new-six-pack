@@ -20,6 +20,9 @@
 									<%=link_to "削除", work_out_path(@work_out), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger" %>
 								<% end %>
 							</div>
+								<h5 style="font-weight: bold;"><i class="fas fa-calendar-week"></i> 日付</h5>
+								<%= @work_out.start_time %>
+							<hr>
 								<h5 style="font-weight: bold;"><i class="fas fa-stopwatch"></i> 時間</h5>
 								<%= @work_out.time %>分
 							<hr>

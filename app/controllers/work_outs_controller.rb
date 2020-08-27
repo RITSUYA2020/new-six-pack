@@ -72,6 +72,6 @@ class WorkOutsController < ApplicationController
   private
 
   def work_out_params
-    params.require(:work_out).permit(:time, :muscle_group, :equipment, :body, :effect, :place, :before_image, :after_image, :tag_list)
+    params.require(:work_out).permit(:start_time, :time, :muscle_group, :equipment, :body, :effect, :place, :before_image, :after_image, :tag_list)
   end
 end

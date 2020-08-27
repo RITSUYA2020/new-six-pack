@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'homes#top'
 
   devise_for :users, controllers: {
-  	sessions: 'users/sessions',
+    sessions: 'users/sessions',
     registrations: 'users/registrations',
     passwords: 'users/passwords'
   }
@@ -13,31 +13,31 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get 'users/:user_id/favorites' => 'favorites#show', as: 'user_favorites'
   # 検索
-  get "users/search" => "users#search", as: "users_search"
+  get 'users/search' => 'users#search', as: 'users_search'
 
-  resources :users, except: [:create, :new] do
-  	resource :relationships, only: [:create, :destroy]
-  	get :follows
-  	get :followers
+  resources :users, except: %i[create new] do
+    resource :relationships, only: %i[create destroy]
+    get :follows
+    get :followers
   end
 
-  get "users/:id/confirm" => "users#confirm", as: "users_confirm"
-  put "users/:id/withdraw" => "users#withdraw", as: "users_withdraw"
-  get "work_outs/following" => "work_outs#following", as: "work_outs_following"
-  get "work_outs/search" => "work_outs#search"
-  get "contacts/new" => "contacts#new" # 入力画面
-  post "contacts/confirm" => "contacts#confirm" # 確認画面
-  post "contacts/thanks" => "contacts#thanks" # 送信完了画面
+  get 'users/:id/confirm' => 'users#confirm', as: 'users_confirm'
+  put 'users/:id/withdraw' => 'users#withdraw', as: 'users_withdraw'
+  get 'work_outs/following' => 'work_outs#following', as: 'work_outs_following'
+  get 'work_outs/search' => 'work_outs#search'
+  get 'contacts/new' => 'contacts#new' # 入力画面
+  post 'contacts/confirm' => 'contacts#confirm' # 確認画面
+  post 'contacts/thanks' => 'contacts#thanks' # 送信完了画面
 
   resources :work_outs do
-  	resource :favorites, only: [:create, :destroy]
-  	resource :comments, only: [:create, :destroy]
+    resource :favorites, only: %i[create destroy]
+    resource :comments, only: %i[create destroy]
   end
 
   resources :messages, only: [:create]
-  resources :rooms, only: [:create,:show]
+  resources :rooms, only: %i[create show]
 
   # 通知
-  delete "notifications/destroy_all" => "notifications#destroy_all"
+  delete 'notifications/destroy_all' => 'notifications#destroy_all'
   resources :notifications, only: :index
 end

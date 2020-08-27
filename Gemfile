@@ -41,13 +41,13 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'pry-byebug'
 
-  #Capistranoの利用に必要なgem
-  #gem 'capistrano'
-  #gem 'capistrano-rails'
-  #gem 'capistrano3-puma'
-  #gem 'capistrano-rbenv'
+  # Capistranoの利用に必要なgem
+  # gem 'capistrano'
+  # gem 'capistrano-rails'
+  # gem 'capistrano3-puma'
+  # gem 'capistrano-rbenv'
 
-  #RSpec
+  # RSpec
   gem 'rspec-rails'
 end
 
@@ -78,7 +78,7 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
 
-#enumの日本語化
+# enumの日本語化
 gem 'enum_help'
 
 # bootstrap
@@ -94,13 +94,13 @@ gem 'rubocop', require: false
 gem 'rubocop-rails', require: false
 
 # pagenate
-gem 'kaminari','~> 1.2.1'
+gem 'kaminari', '~> 1.2.1'
 
 # 本番環境でMySQLを利用するための設定
-#gem 'dotenv-rails'
-#group :production do
-  #gem 'mysql2'
-#end
+# gem 'dotenv-rails'
+# group :production do
+# gem 'mysql2'
+# end
 
 # 他言語対応
 gem 'rails-i18n'

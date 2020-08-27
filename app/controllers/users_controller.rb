@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-   before_action :authenticate_user!
-   before_action :check_guest, only: [:update, :withdraw]
+  before_action :authenticate_user!
+  before_action :check_guest, only: %i[update withdraw]
 
   def show
     @user = User.find(params[:id])
@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     unless @user.id == current_user.id
       @current_user_entry.each do |current_user|
         @user_entry.each do |user|
-          if current_user.room_id == user.room_id then
+          if current_user.room_id == user.room_id
             @isRoom = true
             @roomId = current_user.room_id
           end
@@ -26,18 +26,18 @@ class UsersController < ApplicationController
   end
 
   def edit
-  	@user = User.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   def update
-  	@user = User.find(params[:id])
-  	if @user.update(user_params)
+    @user = User.find(params[:id])
+    if @user.update(user_params)
       flash[:notice] = 'プロフィールを更新しました。'
-  		redirect_to user_path(current_user)
-  	else
+      redirect_to user_path(current_user)
+    else
       flash[:error] = '名前とメールアドレスを入力してください。'
-  		render "edit"
-  	end
+      render 'edit'
+    end
   end
 
   def confirm
@@ -46,11 +46,11 @@ class UsersController < ApplicationController
 
   def withdraw
     @user = User.find(params[:id])
-    #is_deletedカラムにフラグを立てる(defaultはfalse)
+    # is_deletedカラムにフラグを立てる(defaultはfalse)
     @user.update(is_deleted: true)
-    #ログアウトさせる
+    # ログアウトさせる
     reset_session
-    flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
+    flash[:notice] = 'ありがとうございました。またのご利用を心よりお待ちしております。'
     redirect_to root_path
   end
 
@@ -85,8 +85,8 @@ class UsersController < ApplicationController
   end
 
   private
-  def user_params
-  	params.require(:user).permit(:name, :email, :profile_image, :sex, :encrypted_password, :is_deleted)
-  end
 
+  def user_params
+    params.require(:user).permit(:name, :email, :profile_image, :sex, :encrypted_password, :is_deleted)
+  end
 end

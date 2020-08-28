@@ -70,4 +70,13 @@ Rails.application.configure do
     authentication: 'plain',
     enable_starttls_auto: true
   }
+
+  config.after_initialize do
+    Bullet.enable = false # Bulletプラグインを有効
+    Bullet.alert = true # JavaScriptでの通知
+    Bullet.bullet_logger = false # log/bullet.logへの出力
+    Bullet.console = false # ブラウザのコンソールログに記録
+    Bullet.rails_logger = false # Railsログに出力
+  end
+  
 end

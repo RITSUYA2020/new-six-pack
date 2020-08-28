@@ -6,130 +6,73 @@
 				<h3>投稿詳細</h3>
 			</div>
 		</div>
-			<%= render 'layouts/profile', user: @user, isRoom: @isRoom, roomId: @roomId, room: @room, entry: @entry %>
 			<div class="row justify-content-center">
-				<div class="col-md-8 my-3">
+				<div class="col-8 my-3">
 					<div class="card">
 						<div class="card-header">
-							<h3>時間</h3>
+							<h4><%=link_to (@user.name).to_s, user_path(@user), style:"font-weight: bold;" %>の投稿</h4>
 						</div>
 						<div class="card-body">
-							<%= @work_out.time %>分
+							<!--投稿したユーザーとログインユーザーが同じだった場合-->
+							<div class="text-right">
+								<% if @user == current_user %>
+									<%=link_to "編集", edit_work_out_path(@work_out), class: "btn btn-success" %>
+									<%=link_to "削除", work_out_path(@work_out), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger" %>
+								<% end %>
+							</div>
+								<h5 style="font-weight: bold;"><i class="fas fa-calendar-week"></i> 日付</h5>
+								<%= @work_out.start_time %>
+							<hr>
+								<h5 style="font-weight: bold;"><i class="fas fa-stopwatch"></i> 時間</h5>
+								<%= @work_out.time %>分
+							<hr>
+								<h5 style="font-weight: bold;"><i class="fas fa-running"></i> 筋群</h5>
+								<%= @work_out.muscle_group_i18n %>
+							<hr>
+								<h5 style="font-weight: bold;"><i class="fas fa-dumbbell"></i> 器具</h5>
+								<% if @work_out.equipment.empty? %>
+									なし
+								<% else %>
+									<%= @work_out.equipment %>
+								<% end %>
+							<hr>
+								<h5 style="font-weight: bold;"><i class="fas fa-pen"></i> 内容</h5>
+								<% if @work_out.body.empty? %>
+									なし
+								<% else %>
+									<%= @work_out.body %>
+								<% end %>
+							<hr>
+								<h5 style="font-weight: bold;"><i class="fas fa-level-up-alt"></i> 効果</h5>
+								<%= @work_out.effect_i18n %>
+							<hr>
+								<h5 style="font-weight: bold;"><i class="fas fa-map-marker-alt"></i> 場所</h5>
+								<%= @work_out.place_i18n %>
+							<hr>
+								<h5 style="font-weight: bold;"><i class="fas fa-exchange-alt"></i> ビフォーアフター</h5>
+								<div class="row justify-content-center">
+									<div class="col-3">
+										<%= attachment_image_tag @work_out, :before_image, :fill, 200, 200, format: "jpeg", fallback: "no-image.jpg", size: '200x200' %>
+									</div>
+									<div class="col-3 align-self-center text-center">
+										<p><i class="fas fa-arrow-right fa-3x"></i></p>
+									</div>
+									<div class="col-3">
+										<%= attachment_image_tag @work_out, :after_image, :fill, 200, 200, format: "jpeg", fallback: "no-image.jpg", size: '200x200' %>
+									</div>
+								</div>
+							<hr>
+								<h5 style="font-weight: bold;"><i class="fas fa-tag"></i> タグ</h5>
+								<%= render 'work_outs/tag_list', tag_list: @work_out.tag_list %>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="row justify-content-center">
-				<div class="col-md-8 my-3">
+				<div class="col-8 my-3">
 					<div class="card">
 						<div class="card-header">
-							<h3>筋群</h3>
-						</div>
-						<div class="card-body">
-							<%= @work_out.muscle_group_i18n %>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row justify-content-center">
-				<div class="col-md-8 my-3">
-					<div class="card">
-						<div class="card-header">
-							<h3>器具</h3>
-						</div>
-						<div class="card-body">
-							<%= @work_out.equipment %>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row justify-content-center">
-				<div class="col-md-8 my-3">
-					<div class="card">
-						<div class="card-header">
-							<h3>内容</h3>
-						</div>
-						<div class="card-body">
-							<%= @work_out.body %>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row justify-content-center">
-				<div class="col-md-8 my-3">
-					<div class="card">
-						<div class="card-header">
-							<h3>効果</h3>
-						</div>
-						<div class="card-body">
-							<%= @work_out.effect_i18n %>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row justify-content-center">
-				<div class="col-md-8 my-3">
-					<div class="card">
-						<div class="card-header">
-							<h3>場所</h3>
-						</div>
-						<div class="card-body">
-							<%= @work_out.place_i18n %>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row justify-content-center">
-				<div class="col-md-4 my-3">
-					<div class="card">
-						<div class="card-header">
-							<h3>ビフォー</h3>
-						</div>
-						<div class="card-body text-center">
-							<%= attachment_image_tag @work_out, :before_image, :fill, 200, 200, format: "jpeg", fallback: "no-image.jpg", size: '200x200' %>
-						</div>
-					</div>
-				</div>
-				<div class="align-self-center">
-					<p><i class="fas fa-arrow-right fa-3x"></i></p>
-				</div>
-				<div class="col-md-4 my-3">
-					<div class="card">
-						<div class="card-header">
-							<h3>アフター</h3>
-						</div>
-						<div class="card-body text-center">
-							<%= attachment_image_tag @work_out, :after_image, :fill, 200, 200, format: "jpeg", fallback: "no-image.jpg", size: '200x200' %>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row justify-content-center">
-				<div class="col-md-8 my-3">
-					<div class="card">
-						<div class="card-header">
-							<h3>タグ</h3>
-						</div>
-						<div class="card-body">
-							<%= render 'work_outs/tag_list', tag_list: @work_out.tag_list %>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row justify-content-center">
-				<div class="col text-center">
-					<!--投稿したユーザーとログインユーザーが同じだった場合-->
-					<% if @user == current_user %>
-						<%=link_to "編集する", edit_work_out_path(@work_out), class: "btn btn-outline-success" %>
-						<%=link_to "削除する", work_out_path(@work_out), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-outline-danger" %>
-					<% end %>
-				</div>
-			</div>
-			<div class="row justify-content-center">
-				<div class="col-md-8 my-3">
-					<div class="card">
-						<div class="card-header">
-							<h3>いいね <%= @favorite_users.count %>人</h3>
+							<h5 style="font-weight: bold;"><i class="fas fa-heart"></i> <%= @favorite_users.count %>人</h5>
 						</div>
 						<div class="card-body">
 							<% @favorite_users.each do |user| %>
@@ -144,14 +87,14 @@
 			</div>
 			<!--コメント一覧-->
 			<div class="row justify-content-center">
-				<div class="col-md-8 my-3">
+				<div class="col-8 my-3">
 					<div id="comment-<%= @work_out.id %>">
 						<%= render partial: 'comments/comment', locals: { comments: @work_out.comments} %>
 					</div>
 				</div>
 			</div>
 			<div class="row justify-content-center">
-				<div class="col-md-8 my-3">
+				<div class="col-8 my-3">
 					<%= form_with( model:[@work_out,@comment], url: work_out_comments_path(@work_out,@comment), remote: true) do |f| %>
 
 						<div class="field text-center">

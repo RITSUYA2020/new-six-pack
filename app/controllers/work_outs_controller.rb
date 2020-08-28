@@ -10,25 +10,8 @@ class WorkOutsController < ApplicationController
   def show
     @work_out = WorkOut.find(params[:id])
     @user = @work_out.user
-    @current_user_entry = Entry.where(user_id: current_user.id)
-    @user_entry = Entry.where(user_id: @user.id)
     @comment = Comment.new
     @favorite_users = @work_out.favorite_users
-    unless @user.id == current_user.id
-      @current_user_entry.each do |current_user|
-        @user_entry.each do |user|
-          if current_user.room_id == user.room_id
-            @isRoom = true
-            @roomId = current_user.room_id
-          end
-        end
-      end
-      if @isRoom
-      else
-        @room = Room.new
-        @entry = Entry.new
-      end
-    end
   end
 
   def edit
@@ -89,6 +72,6 @@ class WorkOutsController < ApplicationController
   private
 
   def work_out_params
-    params.require(:work_out).permit(:time, :muscle_group, :equipment, :body, :effect, :place, :before_image, :after_image, :tag_list)
+    params.require(:work_out).permit(:start_time, :time, :muscle_group, :equipment, :body, :effect, :place, :before_image, :after_image, :tag_list)
   end
 end

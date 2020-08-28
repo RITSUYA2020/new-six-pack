@@ -9,11 +9,10 @@
 		<%= render 'layouts/profile', user: @user, isRoom: @isRoom, roomId: @roomId, room: @room, entry: @entry %>
 		<%= render 'work_outs/lists', work_outs: @work_outs %>
 		<div class="row justify-content-center">
-			<div class="col-8">
+			<div class="col-8 mt-5">
 				<%= month_calendar events: @work_outs do |date, work_outs| %>
 				  	<%= date.day %><br>
 					<% work_outs.each do |work_out| %>
-							<%=link_to work_out.muscle_group_i18n, work_out_path(work_out) %><br>
 					<% end %>
 				<% end %>
 			</div>

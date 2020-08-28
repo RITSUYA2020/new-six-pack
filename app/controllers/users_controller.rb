@@ -21,7 +21,7 @@ class UsersController < ApplicationController
         @entry = Entry.new
       end
     end
-    @work_outs = @user.work_outs.reverse_order
+    @work_outs = @user.work_outs.includes(:taggings).reverse_order
     @comment = Comment.new
   end
 

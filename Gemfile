@@ -58,6 +58,8 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  # N+1問題のクエリを警告
+  gem 'bullet'
 end
 
 group :test do
@@ -113,3 +115,6 @@ gem 'ransack'
 
 # カレンダー
 gem 'simple_calendar', '~> 2.0'
+
+# N+1問題が発生する場合と発生しない場合のクエリ数の確認
+#gem "rack-mini-profiler"

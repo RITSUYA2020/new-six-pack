@@ -1,0 +1,13 @@
+<div class="wrap">
+	<div class="container-fluid">
+		<%= render 'layouts/flashes' %>
+		<div class="row">
+			<div class="col-auto ml-1 mt-2 admin-title">
+				<h3>グラフ</h3>
+			</div>
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-8">
+				<%= high_chart('my-first-chart', @chart) %>
+			</div>
+		</div>

@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
-  namespace :admins do
-    get 'home/top'
-  end
-  root 'homes#top'
+  root 'home#top'
 
 # ユーザー
   devise_for :users, controllers: {

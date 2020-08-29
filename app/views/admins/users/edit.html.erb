@@ -2,12 +2,12 @@
 	<div class="container-fluid">
 		<%= render 'layouts/flashes' %>
 		<div class= "row">
-			<div class="col-auto ml-1 mt-2 page-title">
-				<h3>プロフィール編集</h3>
+			<div class="col-auto ml-1 mt-2 admin-title">
+				<h3>ユーザー情報編集</h3>
 			</div>
 		</div>
 		<div class= "row justify-content-center">
-			<%=form_for(@user) do |f| %>
+			<%=form_for(@user, url: admins_user_path(@user)) do |f| %>
 				<div class="col mt-3">
 					<%= f.label :profile_image, "プロフィール画像" %>
 					<%= f.attachment_field :profile_image, class: "profile_image" %>
@@ -15,6 +15,10 @@
 				<div class="col text-center mt-3">
 					<%= f.label :name, "名前" %>
 					<%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+				</div>
+				<div class="col text-center mt-3">
+					<%= f.label :sex, "性別" %>
+					<%= f.select :sex, User.sexes.keys.map {|k| [I18n.t("enums.user.sex.#{k}"), k]} %>
 				</div>
 				<div class="col text-center mt-3">
 					<%= f.label :email, "メールアドレス" %>
@@ -27,4 +31,3 @@
 		</div>
 	</div>
 </div>
-

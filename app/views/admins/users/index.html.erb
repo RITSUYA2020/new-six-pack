@@ -1,0 +1,36 @@
+<div class="wrap">
+	<div class="container-fluid">
+		<%= render 'layouts/flashes' %>
+		<div class="row">
+			<div class="col-auto ml-1 mt-2 admin-title">
+				<h3>ユーザー一覧</h3>
+			</div>
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-8">
+				<table class="table">
+		            <thead>
+						<th>ID</th>
+						<th>名前</th>
+						<th>性別</th>
+						<th>メールアドレス</th>
+						<th></th>
+		            </thead>
+		            <% @users.each do |user| %>
+			            <tbody>
+							<td><%= user.id %></td>
+							<td><%= user.name %></td>
+							<td><%= user.sex_i18n %></td>
+							<td><%= user.email %></td>
+							<td>
+								<% unless user.email == 'guest@user.com' %>
+									<%=link_to "編集", edit_admins_user_path(user), class: "btn btn-success" %>
+								<% end %>
+							</td>
+			            </tbody>
+		            <% end %>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

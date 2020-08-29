@@ -41,9 +41,9 @@ class User < ApplicationRecord
     super && is_deleted == false
   end
 
-  # ゲストログイン
+  # ユーザー簡単ログイン
   def self.guest
-    find_or_create_by!(name: 'ゲスト', email: 'guest@example.jp') do |user|
+    find_or_create_by!(name: 'ゲスト', email: 'guest@user.com') do |user|
       user.password = SecureRandom.urlsafe_base64
       # user.confirmed_at = Time.now  # Confirmable を使用している場合は必要
     end

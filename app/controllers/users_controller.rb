@@ -68,7 +68,7 @@ class UsersController < ApplicationController
 
   def check_guest
     user = User.find(params[:id])
-    if user.email == 'guest@example.jp'
+    if user.email == 'guest@user.com'
       flash[:alert] = 'ゲストユーザーの変更・削除はできません。'
       redirect_to work_outs_path
     end

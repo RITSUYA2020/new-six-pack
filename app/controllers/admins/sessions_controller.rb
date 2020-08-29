@@ -31,13 +31,11 @@ class Admins::SessionsController < Devise::SessionsController
     redirect_to admins_users_path, notice: 'ゲスト管理者としてログインしました。'
   end
 
-
-  def after_sign_in_path_for(resource)
+  def after_sign_in_path_for(_resource)
     admins_users_path
   end
 
-  def after_sign_out_path_for(resource)
+  def after_sign_out_path_for(_resource)
     root_path
   end
-
 end

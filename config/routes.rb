@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :admins do
+    get 'home/top'
+  end
   root 'homes#top'
 
 # ユーザー
@@ -51,6 +54,7 @@ Rails.application.routes.draw do
   }
 
   devise_scope :admin do
+    get '/admins/top', to:'admins/home#top'
     post '/admins/guest_sign_in', to: 'admins/sessions#new_guest'
   end
 

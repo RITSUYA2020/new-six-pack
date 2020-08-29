@@ -117,4 +117,7 @@ gem 'ransack'
 gem 'simple_calendar', '~> 2.0'
 
 # N+1問題が発生する場合と発生しない場合のクエリ数の確認
-#gem "rack-mini-profiler"
+# gem "rack-mini-profiler"
+
+# チャートの描画
+gem 'lazy_high_charts'

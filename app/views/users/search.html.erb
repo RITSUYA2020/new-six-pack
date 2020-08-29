@@ -6,7 +6,7 @@
 				<h3>ユーザー一覧</h3>
 			</div>
 		</div>
-		<div class= "row justify-content-center">
+		<div class= "row">
 			<% @users.each do |user| %>
 				<div class="col-3 mb-3 py-2 mx-5 text-center user-index">
 					<%= link_to user_path(user) do %>

@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
   root 'homes#top'
 
+# ユーザー
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations',
     passwords: 'users/passwords'
   }
+
   devise_scope :user do
     post '/users/guest_sign_in', to: 'users/sessions#new_guest'
   end
@@ -40,4 +42,19 @@ Rails.application.routes.draw do
   # 通知
   delete 'notifications/destroy_all' => 'notifications#destroy_all'
   resources :notifications, only: :index
+
+# 管理者
+  devise_for :admins, controllers: {
+    sessions: 'admins/sessions',
+    registrations: 'admins/registrations',
+    passwords: 'admins/passwords'
+  }
+
+  devise_scope :admin do
+    post '/admins/guest_sign_in', to: 'admins/sessions#new_guest'
+  end
+
+  namespace :admins do
+    resources :users, only: [:index, :show, :edit, :update]
+  end
 end

@@ -3,6 +3,12 @@ class Admins::UsersController < ApplicationController
 
   def index
     @users = User.all
+    respond_to do |format|
+      format.html # html用の処理を書く
+      format.csv do # csv用の処理を書く
+        send_data render_to_string, filename: "ユーザー一覧.csv", type: :csv
+      end
+    end
   end
 
   def edit

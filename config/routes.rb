@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root 'home#top'
 
 # ユーザー
@@ -57,5 +58,6 @@ Rails.application.routes.draw do
 
   namespace :admins do
     resources :users, only: [:index, :edit, :update]
+    resources :work_outs, only: [:index]
   end
 end

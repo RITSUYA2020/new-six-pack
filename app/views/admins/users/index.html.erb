@@ -13,10 +13,10 @@
 				</div>
 				<table class="table">
 		            <thead>
-						<th>ID</th>
-						<th>名前</th>
-						<th>性別</th>
-						<th>メールアドレス</th>
+						<th><%= sort_link(@q, :id, "ID") %></th>
+						<th><%= sort_link(@q, :name, "名前") %></th>
+						<th><%= sort_link(@q, :sex, "性別") %></th>
+						<th><%= sort_link(@q, :email, "メールアドレス") %></th>
 						<th></th>
 		            </thead>
 		            <% @users.each do |user| %>

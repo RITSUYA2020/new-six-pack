@@ -2,7 +2,12 @@ class Admins::UsersController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @users = User.all
+    @q = User.ransack(params[:q])
+    unless params[:q]
+      @users = User.all
+    else
+      @users = @q.result(distinct: true)
+    end
     respond_to do |format|
       format.html # html用の処理を書く
       format.csv do # csv用の処理を書く

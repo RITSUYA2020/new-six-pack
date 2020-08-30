@@ -6,7 +6,13 @@
 				<h3>いいねした投稿</h3>
 			</div>
 		</div>
-		<%= render 'work_outs/lists', work_outs: @favorite_work_outs %>
+		<% if @favorite_work_outs.exists? %>
+			<%= render 'work_outs/lists', work_outs: @favorite_work_outs %>
+		<% else %>
+			<div class= "row justify-content-center my-3">
+				<p>いいねした投稿はありません</p>
+			</div>
+		<% end %>
 		<div class="row">
 			<div class="mx-auto mb-3">
 				<%= paginate @favorite_work_outs %>

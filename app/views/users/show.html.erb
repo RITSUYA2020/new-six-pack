@@ -6,6 +6,20 @@
 				<h3>マイページ</h3>
 			</div>
 		</div>
+		<div class="row">
+			<div class="offset-8 col-3 text-center">
+				<table class="table">
+					<thead style="background-color: #f5f5f5;">
+						<th>合計ワークアウト数</th>
+						<th>合計時間</th>
+					</thead>
+					<tbody>
+						  <td><%= @work_outs.count %></td>
+						  <td><%= @work_outs.sum(:time) %>分</td>
+					</tbody>
+	            </table>
+			</div>
+		</div>
 		<%= render 'layouts/profile', user: @user, isRoom: @isRoom, roomId: @roomId, room: @room, entry: @entry %>
 		<div class="row justify-content-center">
 			<div class="col-8 mt-5">
@@ -19,5 +33,4 @@
 		</div>
 	</div>
 </div>
-
 

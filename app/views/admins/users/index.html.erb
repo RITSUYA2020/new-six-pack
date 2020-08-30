@@ -12,7 +12,7 @@
 					<%= link_to "CSVエクスポート", admins_users_path(format: :csv), class:"btn btn-secondary btn-sm" %>
 				</div>
 				<table class="table">
-		            <thead>
+		            <thead style="background-color: #f5f5f5;">
 						<th><%= sort_link(@q, :id, "ID") %></th>
 						<th><%= sort_link(@q, :name, "名前") %></th>
 						<th><%= sort_link(@q, :sex, "性別") %></th>

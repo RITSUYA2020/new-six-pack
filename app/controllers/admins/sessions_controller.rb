@@ -28,11 +28,11 @@ class Admins::SessionsController < Devise::SessionsController
   def new_guest
     admin = Admin.guest
     sign_in admin
-    redirect_to admins_top_path, notice: 'ゲスト管理者としてログインしました。'
+    redirect_to admins_graph_path, notice: 'ゲスト管理者としてログインしました。'
   end
 
   def after_sign_in_path_for(_resource)
-    admins_top_path
+    admins_graph_path
   end
 
   def after_sign_out_path_for(_resource)

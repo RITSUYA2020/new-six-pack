@@ -69,4 +69,15 @@ class User < ApplicationRecord
       notification.save if notification.valid?
     end
   end
+
+  # ランキング
+  def self.create_all_ranks # Userクラスからデータを取ってくる処理なのでクラスメソッド！
+    User.find(
+      WorkOut.group(:user_id) # まず、筋トレの投稿をユーザーのID(user_id)が同じものにグループを分ける
+      .order('sum(time) desc') # それを、合計時間の多い順に並び替える
+      .limit(100) # 上から100レコードのみ取得する
+      .pluck(:user_id) # そして最後に:user_idカラムのみを数字で取り出すように指定。
+      )
+    # 最終的に、pluckで取り出される数字をユーザーのIDとすることで合計時間順にユーザーを取得することができる
+  end
 end

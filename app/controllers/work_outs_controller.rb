@@ -48,7 +48,6 @@ class WorkOutsController < ApplicationController
       flash[:notice] = '投稿が完了しました。'
       redirect_to work_out_path(@work_out)
     else
-      flash[:error] = '(必須)の項目を入力してください。'
       render 'new'
     end
   end

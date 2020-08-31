@@ -18,6 +18,7 @@
 //= require js/lightbox
 //= require_tree .
 
+// 機能の内容を順々に表示する
 $(function(){
    $(window).on('load scroll', function() {
       var winScroll = $(window).scrollTop();
@@ -32,6 +33,7 @@ $(function(){
    });
 });
 
+// トップページへ遷移する
 $(function() {
    setTimeout(function(){
       $('.start p').fadeIn(1600);
@@ -39,4 +41,31 @@ $(function() {
    setTimeout(function(){
       $('.start').fadeOut(500);
    },2500); //2.5秒後にロゴ含め真っ白背景をフェードアウト！
+});
+
+// ファイル選択した画像を即時プレビュー表示する
+$(function(){
+   // inputのidから情報の取得
+   $('#work_out_before_image').on('change', function (e) {
+      // ここから既存の画像のurlの取得
+      var reader = new FileReader();
+      reader.onload = function (e) {
+         $(".before_image").attr('src', e.target.result);
+         }
+      // ここまで
+      reader.readAsDataURL(e.target.files[0]); //取得したurlにアップロード画像のurlを挿入
+   });
+});
+
+$(function(){
+   // inputのidから情報の取得
+   $('#work_out_after_image').on('change', function (e) {
+      // ここから既存の画像のurlの取得
+      var reader = new FileReader();
+      reader.onload = function (e) {
+         $(".after_image").attr('src', e.target.result);
+         }
+      // ここまで
+      reader.readAsDataURL(e.target.files[0]); //取得したurlにアップロード画像のurlを挿入
+   });
 });

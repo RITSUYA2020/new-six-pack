@@ -321,6 +321,7 @@
   border-left: 12px solid #adff2f;
 }
 
+// ユーザーのページタイトルのデザイン
 .page-title h3 {
   padding: 0.5em;/*文字周りの余白*/
   color: #494949;/*文字色*/
@@ -365,6 +366,7 @@
   }
 }
 
+// 管理者のページタイトルのデザイン
 .admin-title h3 {
   padding: 0.5em;/*文字周りの余白*/
   color: #494949;/*文字色*/
@@ -373,6 +375,20 @@
   font-weight: bold;
 }
 
+// グラフのタイトル
 tspan {
   font-weight: bold;
+}
+
+// ランキングの1〜3位は王冠を表示
+.crown-gold {
+  color: #ffd700;
+}
+
+.crown-silver {
+  color: #c0c0c0;
+}
+
+.crown-bronze {
+  color: #ac6b25;
 }

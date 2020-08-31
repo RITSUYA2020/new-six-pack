@@ -14,11 +14,32 @@
 		            	<th>名前</th>
 		            	<th>合計(分)</th>
 		            </thead>
-					<% @ranks.each.with_index(1) do |note, i| %>
+		            <% last_total_time = 0 %>
+		            <% j = 1 %>
+					<% @ranks.each.with_index(1) do |rank, i| %>
 						<tbody>
-							<td>第<%= i %>位</td>
-							<td><%= note.name %></td>
-							<td><%= note.work_outs.sum(:time) %></td>
+							<td>
+								<% if i == 1 %>
+									<% last_total_time = rank.work_outs.sum(:time) %>
+								<% end %>
+								<% if rank.work_outs.sum(:time) != last_total_time %>
+									<% j = i %>
+									<% last_total_time = rank.work_outs.sum(:time) %>
+								<% else %>
+									<% last_total_time = rank.work_outs.sum(:time) %>
+								<% end %>
+								<% if j == 1 %>
+									<i class="fas fa-crown crown-gold"></i>
+								<% elsif j == 2 %>
+									<i class="fas fa-crown crown-silver"></i>
+								<% elsif j == 3 %>
+									<i class="fas fa-crown crown-bronze"></i>
+								<% else %>
+									第<%= j %>位
+								<% end %>
+							</td>
+							<td><%= rank.name %></td>
+							<td><%= rank.work_outs.sum(:time) %></td>
 						</tbody>
 					<% end %>
 				</table>

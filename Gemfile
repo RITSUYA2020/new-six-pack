@@ -121,3 +121,6 @@ gem 'simple_calendar', '~> 2.0'
 
 # チャートの描画
 gem 'lazy_high_charts'
+
+# クリックすると画像拡大
+#gem 'lightbox2-rails'

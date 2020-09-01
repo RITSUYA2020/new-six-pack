@@ -15,7 +15,6 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require popper
-//= require js/lightbox
 //= require_tree .
 
 // 機能の内容を順々に表示する

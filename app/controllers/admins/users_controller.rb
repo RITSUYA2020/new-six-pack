@@ -32,16 +32,23 @@ class Admins::UsersController < ApplicationController
   end
 
   def graph
-    # 今月の初めから今日までを配列にする
-    days = (Date.today.beginning_of_month..Date.today).to_a
+    if params[:pre_preview].present?
+
+    elsif params[:next_preview].present?
+
+    else
+      # 今月の初めから今日までを配列にする
+      @days = (Date.today.beginning_of_month..Date.today).to_a
+    end
     # 今月の初めから今日までの配列を取得し、今日ユーザーが登録したレコードを探して数える
         # 配列の入った変数.map {|変数名| 処理内容 }
-    users = days.map { |item| User.where(created_at: item.beginning_of_day..item.end_of_day).count }
+    users = @days.map { |item| User.where(created_at: item.beginning_of_day..item.end_of_day).count }
 
     @chart = LazyHighCharts::HighChart.new('graph') do |c|
-      c.title(text: "今月のユーザー登録推移")
+      c.title(text: "#{Date.today.year}年#{Date.today.month}月のユーザー登録推移")
       # x軸
       c.xAxis( # x軸の設定
+        categories: @days,
         title: { # x軸のタイトル
           text: '日付'
             }
@@ -66,6 +73,6 @@ class Admins::UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :profile_image, :sex, :encrypted_password, :is_deleted)
+    params.require(:user).permit(:name, :email, :profile_image, :sex, :is_deleted)
   end
 end

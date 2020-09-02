@@ -6,15 +6,62 @@
 				<h3>マイページ</h3>
 			</div>
 		</div>
-		<div class="row">
-			<div class="offset-8 col-3 text-center">
-				<table class="table">
+		<div class="row justify-content-center">
+			<div class="col-8 border mb-3">
+				<div class="row border-bottom pl-2 pt-2" style="background-color: #f5f5f5;">
+					<h5 class="pr-3" style="font-weight: bold;"><i class="fas fa-cloud-sun"></i> 天気</h5>
+				</div>
+				<div class="row pt-2">
+					<div class="col-auto">
+					    <span>場所 :</span>
+					    <span id="place"></span>
+					</div>
+					<div class="col-auto">
+					    <span>最高気温 :</span>
+					    <span id="temp_max"></span>
+					    <span> ℃</span>
+					</div>
+					<div class="col-auto">
+					    <span>最低気温 :</span>
+					    <span id="temp_min"></span>
+					    <span> ℃</span>
+					</div>
+					<div class="col-auto">
+					    <span>湿度 :</span>
+					    <span id="humidity"></span>
+					    <span> %</span>
+					</div>
+					<div class="col-auto">
+					    <span>風速 :</span>
+					    <span id="speed"></span>
+					    <span> m/s</span>
+					</div>
+					<div class="col-auto">
+					    <span>天気 :</span>
+					    <span id="weather"></span>
+					    <span id="icon"><img id="img"></span>
+					</div>
+				</div>
+				<div class="row py-2">
+					<div class="col-auto">
+					    <label>都市名 :</label>
+					</div>
+					<div class="col-auto">
+					    <input id="cityname" type="text" size="14" maxlength="14" placeholder="Tokyo">
+					    <button id="btn" class="btn btn-secondary btn-sm px-2" ><i class="fas fa-search"></i></button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row justify-content-center no-gutters">
+			<div class="offset-5 col-3 text-center">
+				<table class="table border">
 					<thead style="background-color: #f5f5f5;">
-						<th>合計ワークアウト数</th>
+						<th class="border-right">合計ワークアウト数</th>
 						<th>合計時間</th>
 					</thead>
 					<tbody>
-						  <td><%= @work_outs.count %></td>
+						  <td class="border-right"><%= @work_outs.count %></td>
 						  <td><%= @work_outs.sum(:time) %>分</td>
 					</tbody>
 	            </table>
@@ -33,4 +80,3 @@
 		</div>
 	</div>
 </div>
-

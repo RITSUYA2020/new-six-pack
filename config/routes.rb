@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   root 'home#top'
+  get '/about' => 'home#about'
 
 # ユーザー
   devise_for :users, controllers: {

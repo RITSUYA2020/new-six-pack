@@ -63,6 +63,8 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   # N+1問題のクエリを警告
   gem 'bullet'
+  # テスト環境の立ち上げ速度を上げる
+  gem 'spring-commands-rspec'
 end
 
 group :test do

@@ -87,13 +87,14 @@ $(function(){
    var map;
    function initMap() {
 
-      var myLatLng = {lat: 35.658449, lng: 139.702172};
-
+      // マップの表示
+      var myLatLng = {lat: 35.658449, lng: 139.702172};　// 緯度・経度の指定
       map = new google.maps.Map(document.getElementById('map'), {
          center: {lat: 35.658449, lng: 139.702172},
          zoom: 14
       });
 
+      // マーカーの表示
       var marker = new google.maps.Marker({
          position: myLatLng,
          map: map,

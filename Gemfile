@@ -49,6 +49,9 @@ group :development, :test do
 
   # RSpec
   gem 'rspec-rails'
+  gem "factory_bot_rails"
+  # FactoryBotでDB登録したデータをテスト終了後にクリアするため
+  gem 'database_cleaner'
 end
 
 group :development do

@@ -12,3 +12,4 @@ FactoryBot.define do
     start_time { 20200904 }
   end
 end
+

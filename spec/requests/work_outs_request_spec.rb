@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'WorkOuts', type: :request do
+RSpec.describe 'WorkOutsController', type: :request do
 	describe 'GET #new' do
 	    context '新規投稿ページが正しく表示される' do
 			before do

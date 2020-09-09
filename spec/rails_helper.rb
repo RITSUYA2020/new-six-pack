@@ -65,25 +65,26 @@ RSpec.configure do |config|
   # sign_inヘルパーを提供
   config.include Devise::Test::IntegrationHelpers, type: :request
   config.include FactoryBot::Syntax::Methods # FactoryBotもinclude
+  config.include LoginModule
 
   # DatabaseCleanerの設定
-  config.before(:suite) do
-    DatabaseCleaner.strategy = :truncation
-  end
+  #config.before(:suite) do
+    #DatabaseCleaner.strategy = :truncation
+  #end
 
-  config.before(:each) do
-    DatabaseCleaner.start
-  end
+  #config.before(:each) do
+    #DatabaseCleaner.start
+  #end
 
-  config.after(:each) do
-    DatabaseCleaner.clean
-  end
+  #config.after(:each) do
+    #DatabaseCleaner.clean
+  #end
 
-  config.before(:all) do
-    DatabaseCleaner.start
-  end
+  #config.before(:all) do
+    #DatabaseCleaner.start
+  #end
 
-  config.after(:all) do
-    DatabaseCleaner.clean
-  end
+  #config.after(:all) do
+    #DatabaseCleaner.clean
+  #end
 end

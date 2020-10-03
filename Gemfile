@@ -105,10 +105,10 @@ gem 'rubocop-rails', require: false
 gem 'kaminari', '~> 1.2.1'
 
 # 本番環境でMySQLを利用するための設定
-# gem 'dotenv-rails'
-# group :production do
-# gem 'mysql2'
-# end
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
 
 # 他言語対応
 gem 'rails-i18n'

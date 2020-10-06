@@ -1,6 +1,8 @@
 <nav class="navbar navbar-dark navbar-expand-md" style="background-color: #f4a460;">
   <a class="navbar-brand">
-    <%= image_tag 'logo.png', :size =>'56x56', class: "logo rounded-circle" %>
+      <%= link_to root_path do %>
+        <%= image_tag 'logo.png', :size =>'56x56', class: "logo rounded-circle" %>
+      <% end %>
   </a>
   <button class="navbar-toggler" type="button"
     data-toggle="collapse"
@@ -41,7 +43,7 @@
         </li>
       <% else %>
         <li class="nav-item nav-link">
-          <%= link_to "About", about_path %>
+          <%= link_to "会社情報", about_path %>
         </li>
         <li class="nav-item nav-link">
           <%= link_to "お問い合わせ", contacts_new_path %>

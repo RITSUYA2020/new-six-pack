@@ -241,13 +241,19 @@
 .slide-bottom-4 {
    opacity: 0;
    transform: translateY(20px);
-   transition: all 1.3s 1.25s ease-out;
+   transition: all 1.3s 0.75s ease-out;
 }
 
 .slide-bottom-5 {
    opacity: 0;
    transform: translateY(20px);
-   transition: all 1.3s 1.5s ease-out;
+   transition: all 1.3s 1.0s ease-out;
+}
+
+.slide-bottom-6 {
+   opacity: 0;
+   transform: translateY(20px);
+   transition: all 1.3s 1.25s ease-out;
 }
 
 .start {

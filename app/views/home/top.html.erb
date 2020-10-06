@@ -12,8 +12,8 @@
 			<div class="row">
 				<div class="col-6 offset-3">
 						<h2 class="catch-copy_title">Let's Work Out!!</h2>
-						<p class="txt_size_m">新規登録ですぐに使用できます</p>
-							<%= link_to "いますぐ新規登録", new_user_registration_path, class:"btn-gradient-radius" %>
+						<p class="txt_size_m" style="font-weight: bold;">新規登録ですぐに使用できます！</p>
+						<%= link_to "いますぐ新規登録", new_user_registration_path, class:"btn-gradient-radius" %>
 				</div>
 			</div>
 		</div>
@@ -32,7 +32,7 @@
 	<!--========= Intro ========-->
 	<section id="intro">
 		<div class="container-fluid">
-			<h2 class="heading-title pb-3">機能</h2>
+			<h2 class="heading-title pb-3">基本機能</h2>
 			<div class="row pb-5">
 				<div class="col-6">
 					<div class="intro_box slide-bottom-1 show">
@@ -72,7 +72,7 @@
 								<p class="txt_size_l"><span class="marker">フォロー</span></p>
 							</div>
 							<p class="txt_size_m">
-								他のユーザーをフォローでき、「Friend's Work Out」ページで<br>
+								他のユーザーをフォローでき、「友達の投稿」ページで<br>
 								フォローしているユーザーのみを一覧で表示するようにしています。
 							</p>
 						</div>
@@ -93,8 +93,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="row pb-5">
-				<div class="col-6 offset-3">
+			<div class="row">
+				<div class="col-6">
 					<div class="intro_box slide-bottom-5 show">
 						<div class="intro_txt_box">
 							<div class="row">
@@ -102,10 +102,36 @@
 								<p class="txt_size_l"><span class="marker">お問い合わせ</span></p>
 							</div>
 							<p class="txt_size_m">
-								お問い合わせの際は「Contact」ページから
+								お問い合わせしていただくと内容の確認メールが届きます。
 							</p>
 						</div>
 					</div>
+				</div>
+				<div class="col-6">
+					<div class="intro_box slide-bottom-6 show">
+						<div class="intro_txt_box">
+							<div class="row">
+								<p class="txt_color intro_count">6.</p>
+								<p class="txt_size_l"><span class="marker">メッセージ</span></p>
+							</div>
+							<p class="txt_size_m">
+								相互フォローのユーザー同士でメッセージのやり取りができます。
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<div class="text-right">
+						<p style="font-size: 32px">etc...</p>
+					</div>
+				</div>
+			</div>
+			<div class="row justify-content-center mb-5">
+				<div class="col text-center">
+						<p class="txt_size_m" style="font-weight: bold;">他の機能も実装しているので、まずはお試しください！！</p>
+						<%= link_to "いますぐ新規登録", new_user_registration_path, class:"btn-gradient-radius" %>
 				</div>
 			</div>
 		</div>

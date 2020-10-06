@@ -42,10 +42,10 @@ group :development, :test do
   gem 'pry-byebug'
 
   # Capistranoの利用に必要なgem
-  # gem 'capistrano'
-  # gem 'capistrano-rails'
-  # gem 'capistrano3-puma'
-  # gem 'capistrano-rbenv'
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano3-puma'
+  gem 'capistrano-rbenv'
 
   # RSpec
   gem 'rspec-rails'

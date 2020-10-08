@@ -19,7 +19,7 @@ class WorkOut < ApplicationRecord
 
   # ユーザーがツイートをお気に入りしたかどうかの判定メソッド
   def favorited_by?(user)
-    favorites.where(user_id: user.id).exists?
+    favorites.exists?(user_id: user.id)
   end
 
   acts_as_taggable

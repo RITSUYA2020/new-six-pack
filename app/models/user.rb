@@ -77,7 +77,7 @@ class User < ApplicationRecord
       .order('sum(time) desc') # それを、合計時間の多い順に並び替える
       .limit(100) # 上から100レコードのみ取得する
       .pluck(:user_id) # そして最後に:user_idカラムのみを数字で取り出すように指定。
-      )
+    )
     # 最終的に、pluckで取り出される数字をユーザーのIDとすることで合計時間順にユーザーを取得することができる
   end
 end

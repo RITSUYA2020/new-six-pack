@@ -1,7 +1,7 @@
 require 'csv'
 
 CSV.generate do |csv|
-  csv_column_names = %w(名前 性別 メールアドレス)
+  csv_column_names = %w[名前 性別 メールアドレス]
   csv << csv_column_names
   @users.each do |user|
     csv_column_values = [

@@ -4,6 +4,6 @@ class Notification < ApplicationRecord
 
   belongs_to :work_out, optional: true # optional: trueはwork_out_idにnilを許容する
   belongs_to :comment, optional: true
-  belongs_to :visiter, class_name: 'User', foreign_key: 'visiter_id', optional: true
-  belongs_to :visited, class_name: 'User', foreign_key: 'visited_id', optional: true
+  belongs_to :visiter, class_name: 'User', optional: true
+  belongs_to :visited, class_name: 'User', optional: true
 end

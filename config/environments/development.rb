@@ -78,5 +78,4 @@ Rails.application.configure do
     Bullet.console = false # ブラウザのコンソールログに記録
     Bullet.rails_logger = false # Railsログに出力
   end
-  
 end

@@ -43,15 +43,15 @@ group :development, :test do
 
   # Capistranoの利用に必要なgem
   gem 'capistrano'
-  gem 'capistrano-rails'
   gem 'capistrano3-puma'
+  gem 'capistrano-rails'
   gem 'capistrano-rbenv'
 
   # RSpec
+  gem 'factory_bot_rails'
   gem 'rspec-rails'
-  gem "factory_bot_rails"
   # FactoryBotでDB登録したデータをテスト終了後にクリアするため
-  #gem 'database_cleaner'
+  # gem 'database_cleaner'
 end
 
 group :development do
@@ -72,7 +72,7 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
-  #gem 'chromedriver-helper'
+  # gem 'chromedriver-helper'
   gem 'webdrivers'
 end
 
@@ -129,4 +129,4 @@ gem 'simple_calendar', '~> 2.0'
 gem 'lazy_high_charts'
 
 # クリックすると画像拡大
-#gem 'lightbox2-rails'
+# gem 'lightbox2-rails'

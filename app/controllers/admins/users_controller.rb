@@ -3,15 +3,15 @@ class Admins::UsersController < ApplicationController
 
   def index
     @q = User.ransack(params[:q])
-    unless params[:q]
-      @users = User.all
-    else
-      @users = @q.result(distinct: true)
-    end
+    @users = if params[:q]
+               @q.result(distinct: true)
+             else
+               User.all
+             end
     respond_to do |format|
       format.html # html用の処理を書く
       format.csv do # csv用の処理を書く
-        send_data render_to_string, filename: "ユーザー一覧.csv", type: :csv
+        send_data render_to_string, filename: 'ユーザー一覧.csv', type: :csv
       end
     end
   end
@@ -28,7 +28,7 @@ class Admins::UsersController < ApplicationController
     else
       flash[:error] = '名前とメールアドレスを入力してください。'
       render 'edit'
-       end
+    end
   end
 
   def graph
@@ -41,7 +41,7 @@ class Admins::UsersController < ApplicationController
       @days = (Date.today.beginning_of_month..Date.today).to_a
     end
     # 今月の初めから今日までの配列を取得し、今日ユーザーが登録したレコードを探して数える
-        # 配列の入った変数.map {|変数名| 処理内容 }
+    # 配列の入った変数.map {|変数名| 処理内容 }
     users = @days.map { |item| User.where(created_at: item.beginning_of_day..item.end_of_day).count }
 
     @chart = LazyHighCharts::HighChart.new('graph') do |c|
@@ -51,18 +51,18 @@ class Admins::UsersController < ApplicationController
         categories: @days,
         title: { # x軸のタイトル
           text: '日付'
-            }
-          )
+        }
+      )
       # y軸
       c.yAxis( # y軸の設定
-            title: { # y軸のタイトル
-                text: '人数'
-                }
-            )
+        title: { # y軸のタイトル
+          text: '人数'
+        }
+      )
       c.series( # グラフの中身（データの設定）
-        name: '登録数', #各データの名前
-          data: users # 各データ(数値)
-          )
+        name: '登録数', # 各データの名前
+        data: users # 各データ(数値)
+      )
     end
   end
 
@@ -70,8 +70,8 @@ class Admins::UsersController < ApplicationController
     @ranks = User.create_all_ranks
   end
 
-
   private
+
   def user_params
     params.require(:user).permit(:name, :email, :profile_image, :sex, :is_deleted)
   end

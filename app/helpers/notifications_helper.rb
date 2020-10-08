@@ -12,7 +12,7 @@ module NotificationsHelper
       tag.a(notification.visiter.name, href: user_path(@visiter), style: 'font-weight: bold;') + 'があなたをフォローしました'
     when 'favorite'
       tag.a(notification.visiter.name, href: user_path(@visiter), style: 'font-weight: bold;') + 'が' + tag.a('あなたの投稿', href: work_out_path(notification.work_out_id), style: 'font-weight: bold;') + 'にいいねしました'
-    when 'comment' then
+    when 'comment'
       # コメントの内容を取得
       @comment = Comment.find_by(id: @visiter_comment)&.body
       tag.a(@visiter.name, href: user_path(@visiter), style: 'font-weight: bold;') + 'が' + tag.a('あなたの投稿', href: work_out_path(notification.work_out_id), style: 'font-weight: bold;') + 'にコメントしました'

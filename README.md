@@ -1,7 +1,6 @@
 # SIXPACK
 ![image](https://user-images.githubusercontent.com/64945711/92579639-6891fb80-f2c8-11ea-90f9-749125f2acf6.png)
 
-
 ## サイト概要
 最近、ちょっと太ってきたな...もっと筋肉つけたいな...<br>
 よし、筋トレしよう！<br>
@@ -33,13 +32,13 @@ Javascript(jQuery)</br>
 Vagrant + VirtualBox
 
 ### インフラ
-AWS(VPC, EC2, RDS, CloudWatch, Route53)<br>
+AWS(EC2, RDS, Route53)<br>
 MySQL2<br>
 Nginx(Webサーバ)<br>
 Capistrano
 
 ### AWS構成図
-![Untitled Diagram](https://user-images.githubusercontent.com/62163875/91648806-d78c7a80-eaa6-11ea-8f03-dd835d795723.png)
+<img src="https://wals.s3-ap-northeast-1.amazonaws.com/uploads/wals2_content_img/455/architect_all.png">
 
 ### その他の技術(gem 等)
 pry-byebug<br>
@@ -64,6 +63,31 @@ acts-as-taggable-on<br>
 ransack<br>
 simple_calendar<br>
 lazy_high_charts<br>
+
+### ER図
+![SIXPACK_ER図](https://user-images.githubusercontent.com/64945711/96334397-76972100-10ab-11eb-8e20-62dd414c5dc5.png)
+
+### 主な機能
+- ユーザー登録機能（ユーザー・管理者）
+	- ログイン、ログアウト
+	- プロフィール編集
+- 投稿機能
+	- 新規投稿
+	- 編集、削除
+- コメント機能（非同期）
+	- 新規投稿
+	- 削除
+- カレンダー機能
+- いいね機能（非同期）
+- フォロー、フォロワー機能
+- DM機能
+- 通知機能（いいね・コメント)
+- 検索機能（ユーザー・投稿)
+- ソート機能(管理者用のユーザー一覧)
+- お問い合わせ機能
+- 天気表示
+- 地図表示
+- CSVエクスポート機能
 
 ### 機能一覧
 https://docs.google.com/spreadsheets/d/17dG7breHOghgI3CEym-8vwV7O5gS1e2_BElRzf_k0RE/edit#gid=0

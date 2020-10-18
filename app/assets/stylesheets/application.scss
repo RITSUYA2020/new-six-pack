@@ -414,6 +414,26 @@ tspan {
   right: 20px;
   bottom: 20px;
 }
+
 #back img {
   width: 50px;
+}
+
+// 「新規投稿」ボタン
+#new-form {
+  padding: 12px;
+  border-radius: 30px;
+  width: 50px;
+  height: 50px;
+  background-color: #f4a460;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+}
+
+#new-form a {
+  color: #fff;
 }

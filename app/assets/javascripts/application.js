@@ -17,7 +17,7 @@
 //= require popper
 //= require_tree .
 
-// 機能の内容を順々に表示する
+// 基本機能の内容を順々に表示する
 $(function(){
    $(window).on('load scroll', function() {
       var winScroll = $(window).scrollTop();
@@ -103,3 +103,4 @@ $(function(){
    }
    initMap();
 });
+

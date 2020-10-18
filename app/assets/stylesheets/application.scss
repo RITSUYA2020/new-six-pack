@@ -407,3 +407,13 @@ tspan {
     height: 350px;
     width: 50%;
 }
+
+// 「トップへ戻る」ボタン
+#back {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+}
+#back img {
+  width: 50px;
+}

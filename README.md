@@ -88,6 +88,8 @@ lazy_high_charts<br>
 - 天気表示
 - 地図表示
 - CSVエクスポート機能
+- 画像プレビュー機能
+- 画像拡大機能
 
 ### 機能一覧
 https://docs.google.com/spreadsheets/d/17dG7breHOghgI3CEym-8vwV7O5gS1e2_BElRzf_k0RE/edit#gid=0

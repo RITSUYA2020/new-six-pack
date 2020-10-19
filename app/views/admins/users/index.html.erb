@@ -17,6 +17,7 @@
 						<th><%= sort_link(@q, :name, "名前") %></th>
 						<th><%= sort_link(@q, :sex, "性別") %></th>
 						<th><%= sort_link(@q, :email, "メールアドレス") %></th>
+						<th><%= sort_link(@q, :is_deleted, "退会ステータス") %></th>
 						<th></th>
 		            </thead>
 		            <% @users.each do |user| %>
@@ -26,7 +27,12 @@
 							<td><%= user.sex_i18n %></td>
 							<td><%= user.email %></td>
 							<td>
-								<% unless user.email == 'guest@user.com' %>
+								<% if user.is_deleted %>
+									退会
+								<% end %>
+							</td>
+							<td>
+								<% unless user.email == 'guest@user.com' || user.is_deleted %>
 									<%=link_to "編集", edit_admins_user_path(user), class: "btn btn-success" %>
 								<% end %>
 							</td>

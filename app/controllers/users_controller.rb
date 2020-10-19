@@ -22,7 +22,6 @@ class UsersController < ApplicationController
       end
     end
     @work_outs = @user.work_outs.includes(:taggings).reverse_order
-    @comment = Comment.new
   end
 
   def edit

@@ -69,9 +69,9 @@
 						</div>
 						<!-- いいね -->
 						<div class="col">
-							<div id="favorite-<%= work_out.id %>">
-								<%= render partial: 'favorites/favorite', locals: {work_out: work_out} %>
-							</div>
+							<span id="favorite-<%= work_out.id %>">
+								<%= render 'favorites/favorite', work_out: work_out %>
+							</span>
 						</div>
 					</div>
 					<div class="row">

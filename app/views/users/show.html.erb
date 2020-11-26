@@ -3,72 +3,142 @@
 		<%= render 'layouts/flashes' %>
 		<div class= "row">
 			<div class="col-auto ml-1 mt-2 page-title">
-				<h3>マイページ</h3>
+				<h3>
+					<% if @user.id == current_user.id %>
+						マイページ
+					<% else %>
+						<% if @user.sex == "male" %>
+							<span style="color: #4682b4;"><%= @user.name %></span> のページ
+						<% elsif @user.sex == "female" %>
+							<span style="color: #cd5c5c;"><%= @user.name %></span> のページ
+						<% else %>
+							<%= @user.name %> のページ
+						<% end %>
+					<% end %>
+				</h3>
 			</div>
 		</div>
+		<% if @user.id == current_user.id %>
+			<div class="row justify-content-center">
+				<div class="col-8 border mb-3">
+					<div class="row border-bottom pl-2 pt-2" style="background-color: #f5f5f5;">
+						<h5 class="pr-3" style="font-weight: bold;"><i class="fas fa-cloud-sun"></i> 天気</h5>
+						<small class="pt-2">(屋外でトレーニングする際の参考にどうぞ)</small>
+					</div>
+					<div class="row pt-2">
+						<div class="col-auto">
+						    <span>場所 :</span>
+						    <span id="place"></span>
+						</div>
+						<div class="col-auto">
+						    <span>最高気温 :</span>
+						    <span id="temp_max"></span>
+						    <span> ℃</span>
+						</div>
+						<div class="col-auto">
+						    <span>最低気温 :</span>
+						    <span id="temp_min"></span>
+						    <span> ℃</span>
+						</div>
+						<div class="col-auto">
+						    <span>湿度 :</span>
+						    <span id="humidity"></span>
+						    <span> %</span>
+						</div>
+						<div class="col-auto">
+						    <span>風速 :</span>
+						    <span id="speed"></span>
+						    <span> m/s</span>
+						</div>
+						<div class="col-auto">
+						    <span>天気 :</span>
+						    <span id="weather"></span>
+						    <span id="icon"><img id="img"></span>
+						</div>
+					</div>
+					<div class="row py-2">
+						<div class="col-auto">
+						    <label>都市名 :</label>
+						</div>
+						<div class="col-auto">
+						    <input id="cityname" type="text" size="14" maxlength="14" placeholder="Tokyo">
+						    <button id="btn" class="btn btn-secondary btn-sm px-2" ><i class="fas fa-search"></i></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		<% end %>
+		<!--ユーザー情報-->
 		<div class="row justify-content-center">
-			<div class="col-8 border mb-3">
-				<div class="row border-bottom pl-2 pt-2" style="background-color: #f5f5f5;">
-					<h5 class="pr-3" style="font-weight: bold;"><i class="fas fa-cloud-sun"></i> 天気</h5>
-					<small class="pt-2">(屋外でトレーニングする際の参考にどうぞ)</small>
+			<div class="col-8 border">
+				<div class="row border-bottom" style="background-color: #f5f5f5;">
+					<div class="col-4 text-center">
+						<%= attachment_image_tag @user, :profile_image, :fill, 63, 63, format: "jpeg", fallback: "no-image.jpg", class: "rounded-circle" %>
+						<%= @user.name %>
+					</div>
+					<!--ログインが自分か他人か-->
+					<div class="col-4 text-center mt-4">
+						<% if @user == current_user %>
+							<%= link_to edit_user_path(current_user) do %>
+								プロフィール編集 <i class="fas fa-edit"></i>
+							<% end %>
+						<% elsif @user != current_user %>
+							<span id="follow-button">
+								<%= render 'users/follow-button', user: @user %>
+							</span>
+						<% end %>
+					</div>
+					<div class="col-4 text-center mt-4">
+						<% unless @user.id == current_user.id %>
+							<% if current_user.followed_by?(@user) && @user.followed_by?(current_user)  %>
+								<% if @isRoom == true %>
+									<%= link_to room_path(@roomId) do %>
+										メッセージ <i class="far fa-envelope"></i>
+									<% end %>
+								<% else %>
+									<%= form_for(@room) do |f| %>
+										<%= fields_for(@entry) do |e| %>
+											<%= e.hidden_field :user_id, value: @user.id %>
+										<% end %>
+										<%= button_tag type: 'submit', class: "btn btn-primary btn-sm" do %>
+											<i class="far fa-envelope"></i>
+										<% end %>
+									<% end %>
+								<% end %>
+							<% end %>
+						<% end %>
+					</div>
 				</div>
-				<div class="row pt-2">
-					<div class="col-auto">
-					    <span>場所 :</span>
-					    <span id="place"></span>
+				<div class="row my-3">
+					<div class="col text-center">
+						フォロワー<br>
+						<span id="follower-count">
+							<%= render 'users/follower-count', user: @user %>
+						</span>
 					</div>
-					<div class="col-auto">
-					    <span>最高気温 :</span>
-					    <span id="temp_max"></span>
-					    <span> ℃</span>
+					<div class="col text-center">
+						フォロー中<br>
+						<span id="following-count">
+							<%= render 'users/following-count', user: @user %>
+						</span>
 					</div>
-					<div class="col-auto">
-					    <span>最低気温 :</span>
-					    <span id="temp_min"></span>
-					    <span> ℃</span>
+					<div class="col text-center">
+						いいねした投稿<br>
+						<span id="favorite-count">
+							<%= render 'users/favorite-count', user: @user %>
+						</span>
 					</div>
-					<div class="col-auto">
-					    <span>湿度 :</span>
-					    <span id="humidity"></span>
-					    <span> %</span>
+					<div class="col text-center">
+						合計ワークアウト数<br>
+						<%= @work_outs.count %>
 					</div>
-					<div class="col-auto">
-					    <span>風速 :</span>
-					    <span id="speed"></span>
-					    <span> m/s</span>
-					</div>
-					<div class="col-auto">
-					    <span>天気 :</span>
-					    <span id="weather"></span>
-					    <span id="icon"><img id="img"></span>
-					</div>
-				</div>
-				<div class="row py-2">
-					<div class="col-auto">
-					    <label>都市名 :</label>
-					</div>
-					<div class="col-auto">
-					    <input id="cityname" type="text" size="14" maxlength="14" placeholder="Tokyo">
-					    <button id="btn" class="btn btn-secondary btn-sm px-2" ><i class="fas fa-search"></i></button>
+					<div class="col text-center">
+						合計時間<br>
+						<%= @work_outs.sum(:time) %> 分
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="row justify-content-center no-gutters">
-			<div class="offset-5 col-3 text-center">
-				<table class="table border">
-					<thead style="background-color: #f5f5f5;">
-						<th class="border-right">合計ワークアウト数</th>
-						<th>合計時間</th>
-					</thead>
-					<tbody>
-						  <td class="border-right"><%= @work_outs.count %></td>
-						  <td><%= @work_outs.sum(:time) %>分</td>
-					</tbody>
-	            </table>
-			</div>
-		</div>
-		<%= render 'layouts/profile', user: @user, isRoom: @isRoom, roomId: @roomId, room: @room, entry: @entry %>
 		<div class="row justify-content-center">
 			<div class="col-8 mt-5">
 				<%= month_calendar events: @work_outs do |date, work_outs| %>

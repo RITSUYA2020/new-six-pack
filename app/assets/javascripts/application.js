@@ -87,7 +87,7 @@ $(function(){
    function initMap() {
 
       // マップの表示
-      var myLatLng = {lat: 35.658449, lng: 139.702172};　// 緯度・経度の指定
+      var myLatLng = {lat: 35.658449, lng: 139.702172}; // 緯度・経度の指定
       map = new google.maps.Map(document.getElementById('map'), {
          center: {lat: 35.658449, lng: 139.702172},
          zoom: 14
@@ -120,9 +120,9 @@ $(function(){
          $('#temp_max').text(data.main.temp_max);
          // 最低気温
          $('#temp_min').text(data.main.temp_min);
-         //　湿度
+         // 湿度
          $('#humidity').text(data.main.humidity);
-         //　風速
+         // 風速
          $('#speed').text(data.wind.speed);
          // 天気
          $('#weather').text(data.weather[0].main);
@@ -148,4 +148,25 @@ $(function() {
    });
 });
 
+// DOMツリーの構築が完了
+document.addEventListener('DOMContentLoaded' , function(){
+	// タブに対してクリックイベントを適用
+	const tabs = document.getElementsByClassName('tab'); // 指定したclass名の要素の集合（HTMLCollection）を取得
+	for(let i = 0; i < tabs.length; i++) { // 全てのタブ（classにtabの値をもつ要素）に対して、addEventListenerメソッドでクリックイベントを適用
+		tabs[i].addEventListener('click', tabSwitch);
+	}
+
+	// タブをクリックすると実行する関数
+	function tabSwitch(){
+		// タブのclassの値を変更
+		document.getElementsByClassName('is-active')[0].classList.remove('is-active'); // classの値is-activeをもつタブに対し、is-activeの値を削除
+		this.classList.add('is-active'); // クリックしたタブに対してclassの値is-activeを追加
+      // コンテンツのclassの値を変更
+      // コンテンツ（classにpanelの値をもつ要素）の中で、classの値is-show（display:block;を適用）をもつ要素に対し、is-showの値を削除し非表示
+		document.getElementsByClassName('is-show')[0].classList.remove('is-show'); 
+		const arrayTabs = Array.prototype.slice.call(tabs); // 要素の集合を配列に変換
+		const index = arrayTabs.indexOf(this); // 配列から指定した要素の順序(インデックス番号)を取得
+		document.getElementsByClassName('panel')[index].classList.add('is-show'); // その番号を利用して指定したコンテンツに対し、classの値is-showを追加
+	};
+});
 

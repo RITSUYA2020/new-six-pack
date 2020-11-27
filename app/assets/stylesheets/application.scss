@@ -437,3 +437,29 @@ tspan {
 #new-form a {
   color: #fff;
 }
+
+.tab-group{
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+}
+.tab{
+  flex-grow: 1;
+  padding:5px;
+  list-style:none;
+  border:solid 1px #CCC;
+  text-align:center;
+  cursor:pointer;
+}
+
+.panel{
+  display:none;
+}
+.tab.is-active{
+  background:#f4a460;
+  color:#FFF;
+  transition: all 0.2s ease-out // 徐々に減速;
+}
+.panel.is-show{
+  display:block;
+}

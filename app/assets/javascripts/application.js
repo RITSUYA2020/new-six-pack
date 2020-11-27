@@ -148,7 +148,8 @@ $(function() {
    });
 });
 
-// DOMツリーの構築が完了
+// タブメニュー
+// DOMContentLoaded == DOMツリーの構築が完了
 document.addEventListener('DOMContentLoaded' , function(){
 	// タブに対してクリックイベントを適用
 	const tabs = document.getElementsByClassName('tab'); // 指定したclass名の要素の集合（HTMLCollection）を取得
@@ -169,4 +170,3 @@ document.addEventListener('DOMContentLoaded' , function(){
 		document.getElementsByClassName('panel')[index].classList.add('is-show'); // その番号を利用して指定したコンテンツに対し、classの値is-showを追加
 	};
 });
-

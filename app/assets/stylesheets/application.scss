@@ -438,6 +438,8 @@ tspan {
   color: #fff;
 }
 
+
+// タブメニュー
 .tab-group{
   display: flex;
   justify-content: center;
@@ -450,6 +452,7 @@ tspan {
   border:solid 1px #CCC;
   text-align:center;
   cursor:pointer;
+  color: #494949;
 }
 
 .panel{
@@ -462,4 +465,60 @@ tspan {
 }
 .panel.is-show{
   display:block;
+}
+
+// TODOリスト
+input {
+  border-radius: 16px;
+  border: none;
+  padding: 6px 16px;
+  outline: none;
+}
+
+button {
+  border-radius: 16px;
+  border: none;
+  padding: 4px 16px;
+}
+
+button:hover {
+  background-color: #ff7fff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.input-area {
+  background-color: #c1ffff;
+  padding: 8px;
+  margin: 8px;
+  border-radius: 8px;
+}
+
+.incomplete-area {
+  background-color: #c6ffe2;
+  min-height: 200px;
+  padding: 8px;
+  margin: 8px;
+  border-radius: 8px;
+}
+
+.complete-area {
+  background-color: #ffffe0;
+  min-height: 200px;
+  padding: 8px;
+  margin: 8px;
+  border-radius: 8px;
+}
+
+.todo-title {
+  text-align: center;
+  margin-top: 0;
+  font-weight: bold;
+  color: #666;
+}
+
+.list-row {
+  display: flex;
+  align-items: center;
+  padding-bottom: 4px;
 }

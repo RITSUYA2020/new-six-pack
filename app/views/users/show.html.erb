@@ -140,7 +140,7 @@
 			</div>
 		</div>
 		<div class="row justify-content-center no-gutters">
-			<div class="col-8 mt-5">
+			<div class="col-8 mt-5 mb-3">
 				<div class="tab-panel">
 					<!--タブ-->
 					<ul class="tab-group">
@@ -158,9 +158,21 @@
 							<% end %>
 						<% end %>
 					</div>
+					<div class="panel tab-B">
+						<div class="input-area">
+							<input id="add-text" placeholder="TODOを入力" />
+							<button id="add-button">追加</button>
+						</div>
+						<div class="incomplete-area">
+							<p class="todo-title">未完了のTODO</p>
+							<ul id="incomplete-list"></ul>
+						</div>
+						<div class="complete-area">
+							<p class="todo-title">完了したTODO</p>
+							<ul id="complete-list"></ul>
+						</div>
+					</div>
 				</div>
-				<div class="panel tab-B">Content-B</div>
-			</div>
 			</div>
 		</div>
 		<%= render 'layouts/new-button' %>

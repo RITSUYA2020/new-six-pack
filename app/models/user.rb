@@ -80,4 +80,7 @@ class User < ApplicationRecord
     )
     # 最終的に、pluckで取り出される数字をユーザーのIDとすることで合計時間順にユーザーを取得することができる
   end
+
+  # Todo
+  has_many :todos, dependent: :destroy
 end

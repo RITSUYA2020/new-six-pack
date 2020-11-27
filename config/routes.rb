@@ -44,6 +44,10 @@ Rails.application.routes.draw do
   delete 'notifications/destroy_all' => 'notifications#destroy_all'
   resources :notifications, only: :index
 
+  # Todo
+  post 'users/:id/todos' => "todos#create", as: 'create_todos'
+  delete 'users/:id/todos' => "todos#destroy",as: 'destroy_todos'
+
   # 管理者
   devise_for :admins, controllers: {
     sessions: 'admins/sessions',

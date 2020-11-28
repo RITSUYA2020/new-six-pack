@@ -19,6 +19,9 @@ Rails.application.routes.draw do
   get 'users/search' => 'users#search', as: 'users_search'
 
   resources :users, except: %i[create new] do
+    # Todo
+    resources :todos, only: %i[create destroy]
+
     resource :relationships, only: %i[create destroy]
     get :follows
     get :followers
@@ -43,10 +46,6 @@ Rails.application.routes.draw do
   # 通知
   delete 'notifications/destroy_all' => 'notifications#destroy_all'
   resources :notifications, only: :index
-
-  # Todo
-  post 'users/:id/todos' => "todos#create", as: 'create_todos'
-  delete 'users/:id/todos' => "todos#destroy",as: 'destroy_todos'
 
   # 管理者
   devise_for :admins, controllers: {

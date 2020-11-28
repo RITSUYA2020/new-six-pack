@@ -320,7 +320,7 @@
   display: inline-block;
   position: absolute;
   top: 18px;
-　right: -24px;
+  right: -24px;
   border: 12px solid transparent;
   border-left: 12px solid #adff2f;
 }
@@ -345,25 +345,25 @@
 
 // カレンダー
 .simple-calendar {
-  .day {}
+  // .day {}
 
-  .wday-0 {}
-  .wday-1 {}
-  .wday-2 {}
-  .wday-3 {}
-  .wday-4 {}
-  .wday-5 {}
-  .wday-6 {}
+  // .wday-0 {}
+  // .wday-1 {}
+  // .wday-2 {}
+  // .wday-3 {}
+  // .wday-4 {}
+  // .wday-5 {}
+  // .wday-6 {}
 
-  .today {}
-  .past {}
-  .future {}
+  // .today {}
+  // .past {}
+  // .future {}
 
-  .start-date {}
+  // .start-date {}
 
-  .prev-month {}
-  .next-month { }
-  .current-month {}
+  // .prev-month {}
+  // .next-month { }
+  // .current-month {}
 
   .has-events {
     background: #98fb98;
@@ -475,13 +475,13 @@ input {
   outline: none;
 }
 
-button {
+#add-button {
   border-radius: 16px;
   border: none;
   padding: 4px 16px;
 }
 
-button:hover {
+#add-button:hover {
   background-color: #ff7fff;
   color: #fff;
   cursor: pointer;
@@ -497,7 +497,7 @@ button:hover {
 .incomplete-area {
   background-color: #c6ffe2;
   min-height: 200px;
-  padding: 8px;
+  padding: 8px 24px;
   margin: 8px;
   border-radius: 8px;
 }
@@ -521,4 +521,8 @@ button:hover {
   display: flex;
   align-items: center;
   padding-bottom: 4px;
+}
+
+#incomplete-list {
+  font-size: 18px;
 }

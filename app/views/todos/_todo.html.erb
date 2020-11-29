@@ -1,0 +1,23 @@
+<div class="input-area">
+    <%= form_with model:new_todo, url: user_todos_path(current_user), remote: true do |f| %>
+        <%= f.text_field :task, placeholder: "TODOを入力", id: "add-text" %>
+        <%= f.submit "追加", class: "todo-button" %>
+    <% end %>
+</div>
+<div class="incomplete-area">
+    <p class="todo-title">未完了のTODO</p>
+    <ul id="incomplete-list">
+        <% todos.each do |todo| %>
+            <li class="list-row">
+                <%= todo.task %>
+                <%= link_to "完了", user_todo_path(todo.user_id, todo.id), method: :delete, remote: true, class: "todo-button" %>
+                <br>
+            </li>
+        <% end %> 
+    </ul>
+</div>
+<div class="complete-area">
+    <p class="todo-title">完了したTODO</p>
+    <ul id="complete-list"></ul>
+</div>
+   

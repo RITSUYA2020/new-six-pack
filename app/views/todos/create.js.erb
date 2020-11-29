@@ -1,0 +1,4 @@
+$("#incomplete-list")
+.append('<li class="list-row"><%= @new_todo.task %><%= link_to "完了", user_todo_path(@new_todo.user_id, @new_todo.id), method: :delete, remote: true, id: "complete-button" %><br></li>');
+
+$('#add-text').val("");

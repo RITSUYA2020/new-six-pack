@@ -22,7 +22,7 @@ class UsersController < ApplicationController
       end
     end
     @work_outs = @user.work_outs.includes(:taggings).reverse_order
-    @todo = Todo.new
+    @new_todo = Todo.new
     @todos = Todo.all
   end
 

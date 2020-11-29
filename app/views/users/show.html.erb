@@ -139,6 +139,7 @@
 				</div>
 			</div>
 		</div>
+		<% if @user.id == current_user.id %>
 		<div class="row justify-content-center no-gutters">
 			<div class="col-8 mt-5 mb-3">
 				<div class="tab-panel">
@@ -153,38 +154,29 @@
 					<div class="panel tab-A is-show">
 						<%= month_calendar events: @work_outs do |date, work_outs| %>
 							<%= date.day %><br>
-							<% work_outs.each do |work_out| %>
+							<% @work_outs.each do |work_out| %>
 							<small><%=link_to work_out.muscle_group_i18n, work_out_path(work_out) %></small><br>
 							<% end %>
 						<% end %>
 					</div>
 					<div class="panel tab-B">
-						<div class="input-area">
-							<%= form_for(@todo, url: user_todos_path(current_user)) do |f| %>
-								<%= f.text_field :task, placeholder: "TODOを入力" %>
-								<%= f.submit "追加", id: "add-button" %>
-							<% end %>
-						</div>
-						<div class="incomplete-area">
-							<p class="todo-title">未完了のTODO</p>
-							<ul id="incomplete-list">
-								<% @todos.each do |todo| %>
-									<li>
-										<%= todo.task %>
-										<%= link_to "完了", user_todo_path(current_user.id, todo.id), method: :delete %>
-										<br>
-									</li>
-								<% end %> 
-							</ul>
-						</div>
-						<div class="complete-area">
-							<p class="todo-title">完了したTODO</p>
-							<ul id="complete-list"></ul>
-						</div>
+						<%= render 'todos/todo', todos: @todos, new_todo: @new_todo %>
 					</div>
 				</div>
 			</div>
 		</div>
+		<% else %>
+		<div class="row justify-content-center no-gutters">
+			<div class="col-8 mt-5 mb-3">
+				<%= month_calendar events: @work_outs do |date, work_outs| %>
+					<%= date.day %><br>
+					<% work_outs.each do |work_out| %>
+					<small><%=link_to work_out.muscle_group_i18n, work_out_path(work_out) %></small><br>
+					<% end %>
+				<% end %>
+			</div>
+		</div>
+		<% end %>
 		<%= render 'layouts/new-button' %>
 	</div>
 </div>

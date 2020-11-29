@@ -1,79 +1,87 @@
-<div class= "row justify-content-center">
-	<div class="col-8 border my-3 no-gutters form">
+<div class= "row justify-content-center new">
+	<div class="col-auto border my-3 no-gutters new-form-area">
 		<%= form_for(work_out) do |f| %>
-			<div class="mt-2 px-2">
-				<div class="item-title">
+			<div class="mt-2 px-2 item">
+				<span class="row ">
 					<i class="fas fa-calendar-week"></i> <%= f.label :start_time, "日付" %><br>
-				</div>
+				</span>
 				<%= f.date_select :start_time, {use_month_numbers:true} %>
 			</div>
 
-			<div class="mt-4 px-2">
-				<div class="item-title">
+			<div class="mt-4 px-2 item">
+				<span class="row ">
 					<i class="fas fa-stopwatch"></i> <%= f.label :time, "時間" %><span class="text-danger">（必須）</span><br>
-				</div>
-				<%= f.text_field :time, autocomplete: "time", placeholder: "(例)15" %> 分
+				</span>
+				<span class="row">
+					<%= f.number_field :time, autocomplete: "time", placeholder: "(例)15" %>
+					<span style="font-weight: normal; margin: 2px 0 0 5px;"> 分</span>
 			</div>
 
-			<div class="mt-4 px-2">
-				<div class="item-title">
+			<div class="mt-4 px-2 item">
+				<span class="row ">
 					<i class="fas fa-running"></i> <%= f.label :muscle_group, "筋群" %><span class="text-danger">（必須）</span><br>
-				</div>
-				<%= f.select :muscle_group, WorkOut.muscle_groups.keys.map {|k| [I18n.t("enums.work_out.muscle_group.#{k}"), k]} %>
+				</span>
+				<span class="row"><%= f.select :muscle_group, WorkOut.muscle_groups.keys.map {|k| [I18n.t("enums.work_out.muscle_group.#{k}"), k]} %></span>
 			</div>
 
-			<div class="mt-4 px-2">
-				<div class="item-title">
+			<div class="mt-4 px-2 item">
+				<span class="row ">
 					<i class="fas fa-dumbbell"></i> <%= f.label :equipment, "器具" %><br>
-				</div>
-				<%= f.text_field :equipment, autocomplete: "equipment", placeholder: "器具を使用した場合は器具の名前を記入してください。", class: "form-control" %>
+				</span>
+				<span class="row"><%= f.text_field :equipment, autocomplete: "equipment", placeholder: "器具を使用した場合は器具の名前を記入してください。", class: "form-control" %></span>
 			</div>
 
-			<div class="mt-4 px-2">
-				<div class="item-title">
+			<div class="mt-4 px-2 item">
+				<span class="row ">
 					<i class="fas fa-pen"></i> <%= f.label :body, "内容" %><br>
-				</div>
-				<%= f.text_area :body,  autocomplete: "off", placeholder: "具体的な内容を記入してください。",class: "form-control" %>
+				</span>
+				<span class="row"><%= f.text_area :body,  autocomplete: "off", placeholder: "具体的な内容を記入してください。",class: "form-control" %></span>
 			</div>
 
-			<div class="mt-4 px-2">
-				<div class="item-title">
+			<div class="mt-4 px-2 item">
+				<span class="row ">
 					<i class="fas fa-level-up-alt"></i> <%= f.label :effect, "効果" %><span class="text-danger">（必須）</span><br>
-				</div>
-				<%= f.select :effect, WorkOut.effects.keys.map {|k| [I18n.t("enums.work_out.effect.#{k}"), k]} %>
+				</span>
+				<span class="row"><%= f.select :effect, WorkOut.effects.keys.map {|k| [I18n.t("enums.work_out.effect.#{k}"), k]} %></span>
 			</div>
 
-			<div class="mt-4 px-2">
-				<div class="item-title">
+			<div class="mt-4 px-2 item">
+				<span class="row ">
 					<i class="fas fa-map-marker-alt"></i> <%= f.label :place, "場所" %><span class="text-danger">（必須）</span><br>
-				</div>
-				<%= f.select :place, WorkOut.places.keys.map {|k| [I18n.t("enums.work_out.place.#{k}"), k]} %>
+				</span>
+				<span class="row"><%= f.select :place, WorkOut.places.keys.map {|k| [I18n.t("enums.work_out.place.#{k}"), k]} %></span>
 			</div>
 			<div class="row justify-content-center mt-4 px-2">
-				<div class="col-3">
-					<div class="item-title">
+				<div class="col-3 item">
+					<span class="row ">
 						<i class="fas fa-exchange-alt"></i> <%= f.label :before_image, "ビフォー" %><br>
-					</div>
-					<%= attachment_image_tag @work_out, :before_image, :fill, 200, 200, format: "jpeg", fallback: "no-image.jpg", size: '200x200' %><br>
-					<%= f.attachment_field :before_image, class:"mt-2" %>
+					</span>
+					<span class="row">
+						<%= attachment_image_tag @work_out, :before_image, :fill, 200, 200, format: "jpeg", fallback: "no-image.jpg", size: '200x200' %><br>
+						<%= f.attachment_field :before_image, class:"mt-2" %>
+					</span>
 				</div>
 				<div class="col-3 align-self-center text-center">
 					<p><i class="fas fa-arrow-right fa-3x"></i></p>
 				</div>
-				<div class="col-3">
-					<div class="item-title">
+				<div class="col-3 item">
+					<span class="row ">
 						<i class="fas fa-exchange-alt"></i> <%= f.label :after_image, "アフター" %><br>
-					</div>
-					<%= attachment_image_tag @work_out, :after_image, :fill, 200, 200, format: "jpeg", fallback: "no-image.jpg", size: '200x200' %><br>
-					<%= f.attachment_field :after_image, class:"mt-2"  %>
+					</span>
+					<span class="row">
+						<%= attachment_image_tag @work_out, :after_image, :fill, 200, 200, format: "jpeg", fallback: "no-image.jpg", size: '200x200' %><br>
+						<%= f.attachment_field :after_image, class:"mt-2"  %>
+					</span>
 				</div>
 			</div>
 
-			<div class="mt-4 px-2">
-				<div class="item-title">
+			<div class="mt-4 px-2 item">
+				<span class="row ">
 					<i class="fas fa-tag"></i> <%= f.label :tag_list, "タグ（カンマ区切りで入力）" %><br>
-				</div>
-				<%= f.text_field :tag_list, value: work_out.tag_list.join(','), class: "form-control" %>
+				</span>
+				<span class="row">
+					<%= f.text_field :tag_list, value: work_out.tag_list.join(','), class: "form-control" %>
+				</span>
 			</div>
 
 			<div class="text-center m-2">

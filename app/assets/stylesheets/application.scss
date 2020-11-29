@@ -339,8 +339,9 @@
   border-radius: 20px;
 }
 
-.form {
+.new-form-area {
   border-radius: 10px;
+  padding: 0 20px;
 }
 
 // カレンダー
@@ -397,9 +398,17 @@ tspan {
   color: #ac6b25;
 }
 
-// 項目のタイトル
-.item-title {
+// 項目
+.item {
   font-weight: bold;
+}
+
+.fas {
+  padding: 3px 0;
+}
+
+.new label {
+  margin-left: 5px;
 }
 
 // Google Maps API

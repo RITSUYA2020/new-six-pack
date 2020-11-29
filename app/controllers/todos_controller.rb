@@ -1,15 +1,14 @@
 class TodosController < ApplicationController
     def create
-        todo = Todo.new(todo_params)
-        todo.user_id = current_user.id
-        todo.save
-        redirect_to request.referer
+        @todos = Todo.all
+        @new_todo = Todo.new(todo_params)
+        @new_todo.user_id = current_user.id
+        @new_todo.save
     end
 
     def destroy
-        todo = Todo.find(params[:id])
-        todo.destroy
-        redirect_to request.referer
+        @todo = Todo.find(params[:id])
+        @todo.destroy
     end
 
     private

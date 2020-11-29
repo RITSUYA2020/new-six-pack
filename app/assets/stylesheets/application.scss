@@ -468,23 +468,27 @@ tspan {
 }
 
 // TODOリスト
-input {
+#add-text {
   border-radius: 16px;
   border: none;
   padding: 6px 16px;
   outline: none;
 }
 
-#add-button {
+.todo-button {
   border-radius: 16px;
   border: none;
   padding: 4px 16px;
+  background-color: #efefef;
+  color: black;
+  margin-left: 10px;
 }
 
-#add-button:hover {
+.todo-button:hover {
   background-color: #ff7fff;
   color: #fff;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .input-area {

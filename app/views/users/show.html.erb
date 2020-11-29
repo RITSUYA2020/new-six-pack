@@ -140,42 +140,32 @@
 			</div>
 		</div>
 		<% if @user.id == current_user.id %>
-		<div class="row justify-content-center no-gutters">
-			<div class="col-8 mt-5 mb-3">
-				<div class="tab-panel">
-					<!--タブ-->
-					<ul class="tab-group">
-						<li class="tab tab-A is-active">カレンダー</li>
-						<li class="tab tab-B">TODO</li>
-					</ul>
-				</div>
-				<!--タブを切り替えて表示するコンテンツ-->
-				<div class="panel-group">
-					<div class="panel tab-A is-show">
-						<%= month_calendar events: @work_outs do |date, work_outs| %>
-							<%= date.day %><br>
-							<% @work_outs.each do |work_out| %>
-							<small><%=link_to work_out.muscle_group_i18n, work_out_path(work_out) %></small><br>
-							<% end %>
-						<% end %>
+			<div class="row justify-content-center no-gutters">
+				<div class="col-8 mt-5 mb-3">
+					<div class="tab-panel">
+						<!--タブ-->
+						<ul class="tab-group">
+							<li class="tab tab-A is-active">カレンダー</li>
+							<li class="tab tab-B">TODO</li>
+						</ul>
 					</div>
-					<div class="panel tab-B">
-						<%= render 'todos/todo', todos: @todos, new_todo: @new_todo %>
+					<!--タブを切り替えて表示するコンテンツ-->
+					<div class="panel-group">
+						<div class="panel tab-A is-show">
+							<%= render 'users/calendar', work_outs: @work_outs %>
+						</div>
+						<div class="panel tab-B">
+							<%= render 'todos/todo', todos: @todos, new_todo: @new_todo %>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
 		<% else %>
-		<div class="row justify-content-center no-gutters">
-			<div class="col-8 mt-5 mb-3">
-				<%= month_calendar events: @work_outs do |date, work_outs| %>
-					<%= date.day %><br>
-					<% work_outs.each do |work_out| %>
-					<small><%=link_to work_out.muscle_group_i18n, work_out_path(work_out) %></small><br>
-					<% end %>
-				<% end %>
+			<div class="row justify-content-center no-gutters">
+				<div class="col-8 mt-5 mb-3">
+					<%= render 'users/calendar', work_outs: @work_outs %>
+				</div>
 			</div>
-		</div>
 		<% end %>
 		<%= render 'layouts/new-button' %>
 	</div>

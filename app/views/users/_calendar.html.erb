@@ -1,0 +1,6 @@
+<%= month_calendar events: work_outs do |date, work_outs| %>
+    <%= date.day %><br>
+    <% work_outs.each do |work_out| %>
+        <small><%=link_to work_out.muscle_group_i18n, work_out_path(work_out) %></small><br>
+    <% end %>
+<% end %>

@@ -3,7 +3,7 @@
 		<div class="alert alert-danger alert-dismissible fade show">
 			<ul>
 				<% model.errors.full_messages.each do |message| %>
-					<li><%= message %></li>
+					<li style="margin-bottom: -1rem"><%= message %></li>
 				<% end %>
 			</ul>
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close">

@@ -1,6 +1,6 @@
 <% if user.followed_by?(current_user) %>
 	<%=link_to user_relationships_path(user.id), method: :delete, remote: true do %>
-		フォローを外す <i class="fas fa-user"></i>
+		フォロー中 <i class="fas fa-user"></i>
 	<% end %>
 <% else %>
 	<%=link_to user_relationships_path(user.id), method: :post, remote: true do %>

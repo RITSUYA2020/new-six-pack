@@ -539,3 +539,18 @@ tspan {
 #incomplete-list {
   font-size: 18px;
 }
+
+.btn-dm {
+  background-color: #f4a460;
+  border-color: #f4a460;
+}
+
+.btn-dm:hover {
+  background-color: #a9a9a9;
+  border-color: #a9a9a9;
+}
+
+.btn-primary.disabled {
+  background-color: #f4a460;
+  border-color: #f4a460;
+}

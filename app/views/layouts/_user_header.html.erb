@@ -1,8 +1,12 @@
 <nav class="navbar navbar-dark navbar-expand-md" style="background-color: #f4a460;">
   <a class="navbar-brand">
+    <% if user_signed_in? %>
+        <%= image_tag 'logo.png', :size =>'56x56', class: "logo rounded-circle" %>
+    <% else %>
       <%= link_to root_path do %>
         <%= image_tag 'logo.png', :size =>'56x56', class: "logo rounded-circle" %>
       <% end %>
+    <% end %>
   </a>
   <button class="navbar-toggler" type="button"
     data-toggle="collapse"

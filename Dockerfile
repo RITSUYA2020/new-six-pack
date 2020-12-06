@@ -26,7 +26,7 @@ RUN bundle install
 COPY . /myapp
 
 # ポートを3000で公開
-EXPOSE 3000
+# EXPOSE 3000
 
 # コンテナにてコマンドを実行
 # CMD ["rails", "server", "-b", "0.0.0.0", "-p", "3000"]

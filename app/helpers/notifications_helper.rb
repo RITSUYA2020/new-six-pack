@@ -9,13 +9,13 @@ module NotificationsHelper
     # notification.actionがfollowかfavoirteかcommentかで処理を変える
     case notification.action
     when 'follow'
-      tag.a(notification.visiter.name, href: user_path(@visiter), style: 'font-weight: bold;') + 'があなたをフォローしました'
+      "#{tag.a(notification.visiter.name, href: user_path(@visiter), style: 'font-weight: bold;')}があなたをフォローしました"
     when 'favorite'
-      tag.a(notification.visiter.name, href: user_path(@visiter), style: 'font-weight: bold;') + 'が' + tag.a('あなたの投稿', href: work_out_path(notification.work_out_id), style: 'font-weight: bold;') + 'にいいねしました'
+      "#{tag.a(notification.visiter.name, href: user_path(@visiter), style: 'font-weight: bold;')}が#{tag.a('あなたの投稿', href: work_out_path(notification.work_out_id), style: 'font-weight: bold;')}にいいねしました"
     when 'comment'
       # コメントの内容を取得
       @comment = Comment.find_by(id: @visiter_comment)&.body
-      tag.a(@visiter.name, href: user_path(@visiter), style: 'font-weight: bold;') + 'が' + tag.a('あなたの投稿', href: work_out_path(notification.work_out_id), style: 'font-weight: bold;') + 'にコメントしました'
+      "#{tag.a(@visiter.name, href: user_path(@visiter), style: 'font-weight: bold;')}が#{tag.a('あなたの投稿', href: work_out_path(notification.work_out_id), style: 'font-weight: bold;')}にコメントしました"
     end
   end
 

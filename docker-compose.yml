@@ -2,6 +2,10 @@ version: '3'
 services:
   db:
     image: mysql:5.7
+    # 変更を保存するファイルを指定
+    volumes:
+      # マウントを利用したデータの永続化
+      - mysql_data:/var/lib/mysql  # / から始まっていたらルートパス
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: root
@@ -15,9 +19,11 @@ services:
       dockerfile: Dockerfile
     # 一度サーバーが起動すると起動し続けるので、rm -f /myapp/tmp/pids/server.pidで、dockerが起動する度に一旦停止させる
     command: /bin/sh -c "rm -f /myapp/tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'" 
-    # 変更を保存するファイルを指定
     volumes:
-      - .:/myapp # .は全部 # 「/」から始まっていたらルートパス
+      # 匿名ボリュームを利用したデータの永続化
+      - .:/my_app
+      # 名前付きボリュームを利用したデータの永続化
+      - gem_data:/usr/local/bundle # gemがインストールされるディレクトリ
     # ポートを指定
     ports:
       - "3000:3000"
@@ -27,3 +33,8 @@ services:
     # DB側のコンテナが出来上がってからwebを実行する
     depends_on:
       - db
+  
+volumes:
+    mysql_data:
+    gem_data:
+      

@@ -68,7 +68,7 @@ RSpec.describe 'Users', type: :system do
       visit edit_user_path(user)
     end
     it 'プロフィール編集画面への遷移' do
-      expect(current_path).to eq('/users/' + user.id.to_s + '/edit')
+      expect(current_path).to eq("/users/#{user.id}/edit")
     end
     it 'プロフィール編集と表示される' do
       expect(page).to have_content('プロフィール編集')
@@ -83,13 +83,13 @@ RSpec.describe 'Users', type: :system do
       it '編集に成功する' do
         click_button '編集内容を保存する'
         expect(page).to have_content 'プロフィールを更新しました。'
-        expect(current_path).to eq('/users/' + user.id.to_s)
+        expect(current_path).to eq("/users/#{user.id}")
       end
       it '編集に失敗する' do
         fill_in 'user[name]', with: ''
         click_button '編集内容を保存する'
         expect(page).to have_content '名前とメールアドレスを入力してください。'
-        expect(current_path).to eq('/users/' + user.id.to_s)
+        expect(current_path).to eq("/users/#{user.id}")
       end
     end
   end
@@ -100,7 +100,7 @@ RSpec.describe 'Users', type: :system do
       visit users_confirm_path(user)
     end
     it '退会画面への遷移' do
-      expect(current_path).to eq('/users/' + user.id.to_s + '/confirm')
+      expect(current_path).to eq("/users/#{user.id}/confirm")
     end
     it '本当に退会しますか？と表示される' do
       expect(page).to have_content('本当に退会しますか？')

@@ -16,6 +16,27 @@ AllCops:
     - 'config/**/*'
     - 'script/**/*'
     - !ruby/regexp /old_and_unused\.rb$/
+    - "tmp/**/*"
+    - "vendor/**/*"
+  # ルール名を表示
+  DisplayCopNames: true
+
+# Rails用に最適化されたモード。ファイルパスからどのチェックをしたらよいかを自動的に判断してくれる
+Rails:
+  Enabled: true
+
+# redirect_to xxx and return のイディオムを維持
+Style/AndOr:
+  EnforcedStyle: conditionals
+
+# ドキュメントの無い public class を許可する
+Style/Documentation:
+  Enabled: false
+
+# _ 区切りを必須にする
+Style/NumericLiterals:
+  Enabled: false
+
 
 # 日本語でのコメントを許可
 AsciiComments:
@@ -26,12 +47,21 @@ Documentation:
   Enabled: false
 
 # モジュール名::クラス名の定義を許可
-ClassAndModuleChildren:
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+# 空行なしで連なっていても許可
+Bundler/OrderedGems:
+  Enabled: false
+
+# より具体的な例外がrescueされる前に、その親クラスにあたる例外をチェック(詳細なエラーハンドリングの可能性を潰している)
+Lint/ShadowedException:
   Enabled: false
 
 # 文字リテラルのイミュータブル宣言を無視（freezeになるのはRuby3以降）
 Style/FrozenStringLiteralComment:
   Enabled: false
 
+# ルールをバージョンアップと同時に有効化を許可
 AllCops:
-    NewCops: enable
+  NewCops: enable

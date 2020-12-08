@@ -1,5 +1,5 @@
 class Todo < ApplicationRecord
-    validates :task, presence: true
+  validates :task, presence: true
 
-    belongs_to :user
+  belongs_to :user
 end

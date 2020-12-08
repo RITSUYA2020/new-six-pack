@@ -12,7 +12,7 @@ class WorkOut < ApplicationRecord
   enum effect: { too_easy: 1, very_easy: 2, somewhat_easy: 3, just_right: 4, rather_tight: 5, tight: 6, very_tight: 7, too_tight: 8, my_limit: 9 }
   enum place: { gym: 0, home: 1, outdoors: 2 }
 
-  validates :time, numericality: {greater_than: 0} 
+  validates :time, numericality: { greater_than: 0 }
 
   # 通知
   has_many :notifications, dependent: :destroy

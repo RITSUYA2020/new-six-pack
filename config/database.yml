@@ -9,12 +9,13 @@ default: &default
   encoding: utf8
   username: root
   password: password
-  host: db
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  charset: utf8
 
 development:
   <<: *default
   database: new-six-pack_development #DBの名前（任意で命名）
+  host: db
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -22,6 +23,7 @@ development:
 test:
   <<: *default
   database: new-six-pack_test #DBの名前（任意で命名）
+  host: test-db
 
 production:
   <<: *default

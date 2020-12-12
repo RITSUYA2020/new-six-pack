@@ -1,80 +1,59 @@
+# Ruby CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-ruby/ for more details
+#
 version: 2
-# 実行処理の単位
 jobs:
-  # buildジョブはGitHubなどのプッシュをトリガーにしてビルドする際のデフォルトのエントリーポイント
   build:
-    # CI環境にDockerを利用する場合の設定
     docker:
-      # ベースとなるDockerイメージを指定する。複数指定することも可能
-    - image: circleci/ruby:2.5.7-node-browsers
-      environment:
-        # bundlerのバージョンが2.0.1以上だと、bundle installに失敗するため、ここに環境として指定する
-        - BUNDLER_VERSION: 2.1.4
-        # CircleCIは仮想環境を構築するので、そのときに使うデータベースを指定する必要がある
-        - RAILS_ENV: 'test' # テスト環境で起動するため
-      # Mysqlのバージョン5.7で動かしていたため、5.7を指定
-    - image: circleci/mysql:5.7
-      environment:
+      - image: circleci/ruby:2.5.7-node-browsers
+        environment:
+          RAILS_ENV: test
+          BUNDLER_VERSION: 2.1.4
+      - image: circleci/mysql:5.7
+        environment:
         - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
         - MYSQL_ROOT_HOST: '%'
 
-    working_directory: ~/new-six-pack  #自身のアプリディレクトリ名を設定
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/postgres:9.4
 
+    working_directory: ~/repo
 
-    # stepsの中に実行したい処理
     steps:
-    - checkout # CI環境上の working_directory の値の場所にGitリポジトリをコピー
+      - checkout
 
-    - restore_cache: # キャッシュが save_cache されていればリストアする(あれば速くなる)
-        keys: # リストアするキャッシュを複数指定する
-        - v1-dependencies-{{ checksum "Gemfile.lock" }} # ファイルのハッシュ値
-        - v1-dependencies-
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "Gemfile.lock" }}
+            # 完全一致が見つからなかった場合、最新のキャッシュを使用するようにフォールバック
+            - v1-dependencies-
 
-    - run: # コマンドを実行する
-        name: install dependencies # 任意のrunの名前
-        # コマンドを設定する
-        # bundler2.0.1以降のものを使っているのであれば、環境変数と合わせて指定する必要がある
-        command: |
-          gem install bundler -v 2.0.2
-          bundle install --jobs=4 --retry=3 --path vendor/bundle
+      - run:
+          name: 依存関係をインストール
+          command: |
+            gem install bundler -v 2.1.4
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
 
-    # パッケージなどのファイルをキャッシュする
-    - save_cache:
-        # キャッシュするファイルを指定する
-        paths:
-        - ./vendor/bundle
-        # キャッシュの名前を設定する
-        key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
-    # DBの設定
-    - run: bundle exec rake db:create
-    - run: bundle exec rake db:schema:load
+      - run: mv config/database.yml.ci config/database.yml
+      - run:
+          name: DB待ち
+          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 1m
+      - run: bundle exec rake db:create
+      - run: bundle exec rake db:schema:load
 
-    # rubocopを走らせる記述
-    - run:
-      name: Rubocop
-      command: bundle exec rubocop
-
-    # rspecを走らせる記述
-    - run:
-        name: rspec
-        command: |
-          mkdir /tmp/test-results
-          TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
-          circleci tests split --split-by=timings)"
-
-        # gem "RspecJunitFormatter"をインストールしていないとエラーになる。gemfileに記述
-          bundle exec rspec \
-              --format progress \
-              --format RspecJunitFormatter \
-              --out /tmp/test-results/rspec.xml \
-              --format progress \
-              $TEST_FILES
-
-    # store_artifactsステップを使用してテスト結果をアップロード
-    - store_artifacts:
-        path: /tmp/test-results
-        destination: test-results
-
-    - store_test_results:
-        path: /tmp/test-results
+      - run:
+          name: RSpecを実行
+          command: |
+            bundle exec rspec --profile 10 \
+                              --format RspecJunitFormatter \
+                              --out test_results/rspec.xml \
+                              --format progress \
+                              $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)

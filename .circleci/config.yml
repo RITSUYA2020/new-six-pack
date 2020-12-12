@@ -32,7 +32,7 @@ jobs:
             - v1-dependencies-
 
       - run:
-          name: 依存関係をインストール
+          name: install dependencies
           command: |
             gem install bundler -v 2.1.4
             bundle install --jobs=4 --retry=3 --path vendor/bundle
@@ -44,16 +44,20 @@ jobs:
 
       - run: mv config/database.yml.ci config/database.yml
       - run:
-          name: DB待ち
+          name: waiting for stating database
           command: dockerize -wait tcp://127.0.0.1:3306 -timeout 1m
       - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
 
       - run:
-          name: RSpecを実行
+          name: run RSpec
           command: |
             bundle exec rspec --profile 10 \
                               --format RspecJunitFormatter \
                               --out test_results/rspec.xml \
                               --format progress \
                               $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+
+      - run:
+          name: run RuboCop
+          command: bundle exec rubocop

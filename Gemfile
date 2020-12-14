@@ -52,6 +52,9 @@ group :development, :test do
   gem 'rspec-rails'
   # FactoryBotでDB登録したデータをテスト終了後にクリアするため
   # gem 'database_cleaner'
+
+  gem 'ed25519'
+  gem 'bcrypt_pbkdf'
 end
 
 group :development do

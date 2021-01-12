@@ -13,7 +13,7 @@ URL:https://sixpack.work/
 筋トレに取り組む人同士の交流を促し、モチベーションアップに繋げるサイト
 
 ### テーマを選んだ理由
-私も自宅で筋トレを続けているがモチベーションが低下してしまうことがあったため
+自分自身、筋トレを続けていてモチベーションが低下してしまうことがあったため
 
 ### ターゲットユーザ
 筋トレに取り組む人
@@ -29,13 +29,14 @@ Rails 5.2.4.3</br>
 Javascript(jQuery)</br>
 
 ### 開発環境
-Vagrant + VirtualBox
+Vagrant + VirtualBox →　Docker
 
 ### インフラ
 AWS(EC2, RDS, Route53)<br>
 MySQL2<br>
 Nginx(Webサーバ)<br>
 Capistrano
+CircleCI
 
 ### AWS構成図
 <img src="https://wals.s3-ap-northeast-1.amazonaws.com/uploads/wals2_content_img/455/architect_all.png">
@@ -65,7 +66,7 @@ simple_calendar<br>
 lazy_high_charts<br>
 
 ### ER図
-![SIXPACK_ER図](https://user-images.githubusercontent.com/64945711/96334397-76972100-10ab-11eb-8e20-62dd414c5dc5.png)
+![SIXPACK_ER図](https://user-images.githubusercontent.com/64945711/104314637-11719100-551d-11eb-9e21-24d92f03ec8b.png)
 
 ### 主な機能
 - ユーザー登録機能（ユーザー・管理者）

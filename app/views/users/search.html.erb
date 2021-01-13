@@ -6,16 +6,30 @@
 				<h3>ユーザー一覧</h3>
 			</div>
 		</div>
-		<div class= "row">
-			<% @users.each do |user| %>
-				<div class="col-3 mb-3 py-2 mx-5 text-center user-index">
-					<%= link_to user_path(user) do %>
-						<%= attachment_image_tag user, :profile_image, :fill, 63, 63, format: "jpeg", fallback: "no-image.jpg", class: "rounded-circle" %><br>
-						<%= user.name %><br>
+		<div class= "row justify-content-center">
+			<div class="col-9">
+				<table class="table">
+					<thead style="background-color: #f5f5f5;">
+						<th>名前</th>
+						<th>性別</th>
+						<th></th>
+					</thead>
+					<% @users.each do |user| %>
+						<% unless user.is_deleted %>
+						<tbody>
+							<td>
+								<%= attachment_image_tag user, :profile_image, :fill, 40, 40, format: "jpeg", fallback: "no-image.jpg", size:'40x40', class: "rounded-circle" %>
+								<%= user.name %>
+							</td>
+							<td><%= user.sex_i18n %></td>
+							<td>
+								<%=link_to "詳細", user_path(user), class: "btn btn-primary" %>
+							</td>
+						</tbody>
+						<% end %>
 					<% end %>
-					<%= user.sex_i18n %>
-				</div>
-			<% end %>
+				</table>
+			</div>
 		</div>
 	</div>
 </div>

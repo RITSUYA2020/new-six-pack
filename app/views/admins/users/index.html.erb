@@ -26,7 +26,10 @@
 			            <tbody>
 			            	<td></td>
 			            	<td><%= user.id %></td>
-							<td><%= user.name %></td>
+							<td>
+								<%= attachment_image_tag user, :profile_image, :fill, 40, 40, format: "jpeg", fallback: "no-image.jpg", size:'40x40', class: "rounded-circle" %>
+								<%= user.name %>
+							</td>
 							<td><%= user.sex_i18n %></td>
 							<td><%= user.email %></td>
 							<td><%= user.created_at %></td>

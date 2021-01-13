@@ -29,13 +29,13 @@ Rails 5.2.4.3</br>
 Javascript(jQuery)</br>
 
 ### 開発環境
-Vagrant + VirtualBox →　Docker
+Vagrant + VirtualBox
 
 ### インフラ
 AWS(EC2, RDS, Route53)<br>
 MySQL2<br>
 Nginx(Webサーバ)<br>
-Capistrano
+Capistrano<br>
 CircleCI
 
 ### AWS構成図

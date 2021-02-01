@@ -44,8 +44,8 @@ Rails.application.routes.draw do
   resources :rooms, only: %i[create show]
 
   # 通知
-  delete 'notifications/destroy_all' => 'notifications#destroy_all'
-  resources :notifications, only: :index
+  # delete 'notifications/destroy_all' => 'notifications#destroy_all'
+  # resources :notifications, only: :index
 
   # 管理者
   devise_for :admins, controllers: {

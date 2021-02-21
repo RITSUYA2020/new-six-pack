@@ -63,8 +63,8 @@ class Admins::UsersController < ApplicationController
         name: '登録数', # 各データの名前
         data: users # 各データ(数値)
       )
-      #グラフ種別を指定（棒グラフ）
-      c.chart(type: "column" )
+      # グラフ種別を指定（棒グラフ）
+      c.chart(type: 'column')
     end
   end
 
